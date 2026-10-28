@@ -3,13 +3,17 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Public enquiries, approved catalogue content, and protected administration for Karibu and Beyond Ltd.
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: public
+    description: Public website content and submissions
+  - name: admin
+    description: Authenticated administration
 paths:
   /healthz:
     get:
@@ -24,6 +28,616 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /packages:
+    get:
+      operationId: listPackages
+      tags: [public]
+      summary: List published packages
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: category
+          schema: { type: string }
+        - in: query
+          name: destination
+          schema: { type: string }
+        - in: query
+          name: pricingModel
+          schema: { $ref: "#/components/schemas/PricingModel" }
+        - in: query
+          name: minPrice
+          schema: { type: number, minimum: 0 }
+        - in: query
+          name: maxPrice
+          schema: { type: number, minimum: 0 }
+        - in: query
+          name: page
+          schema: { type: integer, minimum: 1, default: 1 }
+        - in: query
+          name: pageSize
+          schema: { type: integer, minimum: 1, maximum: 48, default: 12 }
+        - in: query
+          name: sort
+          schema:
+            type: string
+            enum: [newest, name, price_asc, price_desc]
+      responses:
+        "200":
+          description: Published packages only
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PackageList"
+  /packages/{slug}:
+    get:
+      operationId: getPackage
+      tags: [public]
+      summary: Get a published package
+      parameters:
+        - in: path
+          name: slug
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Package details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublicPackage"
+        "404":
+          description: Package not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /enquiries:
+    post:
+      operationId: createEnquiry
+      tags: [public]
+      summary: Submit a contact or service enquiry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnquiryInput"
+      responses:
+        "201":
+          description: Enquiry saved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnquiryReceipt"
+        "400":
+          description: Invalid enquiry
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "429":
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /newsletter:
+    post:
+      operationId: subscribeNewsletter
+      tags: [public]
+      summary: Request a newsletter subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewsletterInput"
+      responses:
+        "201":
+          description: Subscription request recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewsletterReceipt"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /newsletter/unsubscribe:
+    post:
+      operationId: unsubscribeNewsletter
+      tags: [public]
+      summary: Unsubscribe using a secure link token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UnsubscribeInput"
+      responses:
+        "200":
+          description: Unsubscribe result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnsubscribeReceipt"
+        "400":
+          description: Invalid or expired token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /articles:
+    get:
+      operationId: listArticles
+      tags: [public]
+      summary: List published insights
+      parameters:
+        - in: query
+          name: page
+          schema: { type: integer, minimum: 1, default: 1 }
+        - in: query
+          name: pageSize
+          schema: { type: integer, minimum: 1, maximum: 48, default: 12 }
+      responses:
+        "200":
+          description: Published articles only
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArticleList"
+  /articles/{slug}:
+    get:
+      operationId: getArticle
+      tags: [public]
+      summary: Get a published insight
+      parameters:
+        - in: path
+          name: slug
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Published article
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Article"
+        "404":
+          description: Article not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /testimonials:
+    get:
+      operationId: listTestimonials
+      tags: [public]
+      summary: List approved testimonials
+      responses:
+        "200":
+          description: Approved testimonials only
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Testimonial" }
+  /site-settings:
+    get:
+      operationId: getPublicSiteSettings
+      tags: [public]
+      summary: Get public contact and social settings
+      responses:
+        "200":
+          description: Public site settings
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublicSiteSettings"
+  /admin/session:
+    get:
+      operationId: getAdminSession
+      tags: [admin]
+      summary: Check authenticated administrator access
+      responses:
+        "200":
+          description: Current administrator
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminSession"
+        "401":
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Administrator access required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /admin/dashboard:
+    get:
+      operationId: getAdminDashboard
+      tags: [admin]
+      summary: Get database-derived dashboard metrics
+      responses:
+        "200":
+          description: Current metrics and recent activity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminDashboard"
+  /admin/enquiries:
+    get:
+      operationId: listAdminEnquiries
+      tags: [admin]
+      summary: Search and filter enquiries
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: service
+          schema: { type: string }
+        - in: query
+          name: status
+          schema: { $ref: "#/components/schemas/EnquiryStatus" }
+        - in: query
+          name: page
+          schema: { type: integer, minimum: 1, default: 1 }
+        - in: query
+          name: pageSize
+          schema: { type: integer, minimum: 1, maximum: 100, default: 20 }
+      responses:
+        "200":
+          description: Private enquiries for administrators
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminEnquiryList"
+  /admin/enquiries/export.csv:
+    get:
+      operationId: exportAdminEnquiries
+      tags: [admin]
+      summary: Export authorized enquiry records as CSV
+      responses:
+        "200":
+          description: CSV export
+          content:
+            text/csv:
+              schema: { type: string }
+  /admin/enquiries/{id}:
+    get:
+      operationId: getAdminEnquiry
+      tags: [admin]
+      summary: View an enquiry and its history
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer, minimum: 1 }
+      responses:
+        "200":
+          description: Enquiry details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminEnquiry"
+        "404":
+          description: Enquiry not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /admin/enquiries/{id}/status:
+    patch:
+      operationId: updateEnquiryStatus
+      tags: [admin]
+      summary: Change enquiry status
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer, minimum: 1 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/EnquiryStatusInput" }
+      responses:
+        "200":
+          description: Updated enquiry
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AdminEnquiry" }
+  /admin/enquiries/{id}/notes:
+    post:
+      operationId: addEnquiryNote
+      tags: [admin]
+      summary: Add a private internal note
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer, minimum: 1 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/EnquiryNoteInput" }
+      responses:
+        "201":
+          description: Note saved
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/EnquiryNote" }
+  /admin/enquiries/{id}/anonymize:
+    post:
+      operationId: anonymizeAdminEnquiry
+      tags: [admin]
+      summary: Remove identifying information from an enquiry
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer, minimum: 1 }
+      responses:
+        "200":
+          description: Enquiry anonymized
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AnonymizationReceipt" }
+  /admin/packages:
+    get:
+      operationId: listAdminPackages
+      tags: [admin]
+      summary: List packages in every publication state
+      parameters:
+        - in: query
+          name: status
+          schema: { $ref: "#/components/schemas/PublicationStatus" }
+        - in: query
+          name: search
+          schema: { type: string }
+      responses:
+        "200":
+          description: Packages for administrators
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/AdminPackage" }
+    post:
+      operationId: createAdminPackage
+      tags: [admin]
+      summary: Create a package draft
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PackageInput" }
+      responses:
+        "201":
+          description: Draft package created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AdminPackage" }
+  /admin/packages/{id}:
+    get:
+      operationId: getAdminPackage
+      tags: [admin]
+      summary: Get a package in any publication state
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer, minimum: 1 }
+      responses:
+        "200":
+          description: Package for administrators
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AdminPackage" }
+        "404":
+          description: Package not found
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+    patch:
+      operationId: updateAdminPackage
+      tags: [admin]
+      summary: Update a package
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer, minimum: 1 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PackageUpdate" }
+      responses:
+        "200":
+          description: Updated package
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AdminPackage" }
+  /admin/packages/{id}/duplicate:
+    post:
+      operationId: duplicateAdminPackage
+      tags: [admin]
+      summary: Duplicate as an unpublished draft
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer, minimum: 1 }
+      responses:
+        "201":
+          description: Duplicated package draft
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AdminPackage" }
+  /admin/package-categories:
+    get:
+      operationId: listAdminPackageCategories
+      tags: [admin]
+      summary: List package categories
+      responses:
+        "200":
+          description: Categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/PackageCategory" }
+    post:
+      operationId: createPackageCategory
+      tags: [admin]
+      summary: Add a package category
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PackageCategoryInput" }
+      responses:
+        "201":
+          description: Created category
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PackageCategory" }
+  /admin/articles:
+    get:
+      operationId: listAdminArticles
+      tags: [admin]
+      summary: List articles in every publication state
+      responses:
+        "200":
+          description: Articles for administrators
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/AdminArticle" }
+    post:
+      operationId: createAdminArticle
+      tags: [admin]
+      summary: Create an unpublished article
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ArticleInput" }
+      responses:
+        "201":
+          description: Draft article created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AdminArticle" }
+  /admin/articles/{id}:
+    patch:
+      operationId: updateAdminArticle
+      tags: [admin]
+      summary: Edit or publish an article
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer, minimum: 1 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ArticleUpdate" }
+      responses:
+        "200":
+          description: Updated article
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AdminArticle" }
+  /admin/testimonials:
+    get:
+      operationId: listAdminTestimonials
+      tags: [admin]
+      summary: List testimonials and their approval state
+      responses:
+        "200":
+          description: Testimonials for administrators
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/AdminTestimonial" }
+    post:
+      operationId: createAdminTestimonial
+      tags: [admin]
+      summary: Add an unpublished testimonial
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/TestimonialInput" }
+      responses:
+        "201":
+          description: Unpublished testimonial
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AdminTestimonial" }
+  /admin/testimonials/{id}:
+    patch:
+      operationId: updateAdminTestimonial
+      tags: [admin]
+      summary: Edit or approve a testimonial
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer, minimum: 1 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/TestimonialUpdate" }
+      responses:
+        "200":
+          description: Updated testimonial
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AdminTestimonial" }
+  /admin/site-settings:
+    get:
+      operationId: getAdminSiteSettings
+      tags: [admin]
+      summary: Get editable public site settings
+      responses:
+        "200":
+          description: Settings
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AdminSiteSettings" }
+    patch:
+      operationId: updateAdminSiteSettings
+      tags: [admin]
+      summary: Update contact and social settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/SiteSettingsInput" }
+      responses:
+        "200":
+          description: Updated settings
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AdminSiteSettings" }
 components:
   schemas:
     HealthStatus:
@@ -33,4 +647,417 @@ components:
           type: string
       required:
         - status
+    Error:
+      type: object
+      properties:
+        error: { type: string }
+      required: [error]
+    PricingModel:
+      type: string
+      enum: [fixed, starting_from, per_person, per_group, per_day, custom_quote, contact_for_pricing]
+    PublicationStatus:
+      type: string
+      enum: [draft, published, archived]
+    EnquiryStatus:
+      type: string
+      enum: [new, in_progress, awaiting_client, completed, archived]
+    PackageFaq:
+      type: object
+      properties:
+        question: { type: string }
+        answer: { type: string }
+      required: [question, answer]
+    ItineraryItem:
+      type: object
+      properties:
+        day: { type: integer, minimum: 1 }
+        title: { type: string }
+        description: { type: string }
+      required: [day, title, description]
+    PackageCategory:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        slug: { type: string }
+      required: [id, name, slug]
+    PackageCategoryInput:
+      type: object
+      properties:
+        name: { type: string, minLength: 2, maxLength: 80 }
+      required: [name]
+    PublicPackage:
+      type: object
+      properties:
+        id: { type: integer }
+        slug: { type: string }
+        name: { type: string }
+        shortDescription: { type: string }
+        description: { type: string }
+        category: { $ref: "#/components/schemas/PackageCategory" }
+        destination: { type: ["string", "null"] }
+        duration: { type: ["string", "null"] }
+        pricingModel: { $ref: "#/components/schemas/PricingModel" }
+        priceAmount: { type: ["number", "null"] }
+        currency: { type: ["string", "null"] }
+        pricingUnit: { type: ["string", "null"] }
+        imageUrl: { type: ["string", "null"] }
+        gallery: { type: array, items: { type: string } }
+        itinerary: { type: array, items: { $ref: "#/components/schemas/ItineraryItem" } }
+        inclusions: { type: array, items: { type: string } }
+        exclusions: { type: array, items: { type: string } }
+        optionalExtras: { type: array, items: { type: string } }
+        requirements: { type: ["string", "null"] }
+        importantNotes: { type: ["string", "null"] }
+        availability: { type: ["string", "null"] }
+        cancellationTerms: { type: ["string", "null"] }
+        faqs: { type: array, items: { $ref: "#/components/schemas/PackageFaq" } }
+        featured: { type: boolean }
+        seoTitle: { type: ["string", "null"] }
+        seoDescription: { type: ["string", "null"] }
+      required: [id, slug, name, shortDescription, description, category, destination, duration, pricingModel, priceAmount, currency, pricingUnit, imageUrl, gallery, itinerary, inclusions, exclusions, optionalExtras, requirements, importantNotes, availability, cancellationTerms, faqs, featured, seoTitle, seoDescription]
+    AdminPackage:
+      allOf:
+        - $ref: "#/components/schemas/PublicPackage"
+        - type: object
+          properties:
+            status: { $ref: "#/components/schemas/PublicationStatus" }
+            createdAt: { type: string, format: date-time }
+            updatedAt: { type: string, format: date-time }
+            publishedAt: { type: ["string", "null"], format: date-time }
+          required: [status, createdAt, updatedAt, publishedAt]
+    PackageList:
+      type: object
+      properties:
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/PublicPackage" }
+        total: { type: integer }
+        page: { type: integer }
+        pageSize: { type: integer }
+      required: [items, total, page, pageSize]
+    PackageInput:
+      type: object
+      properties:
+        name: { type: string, minLength: 2, maxLength: 160 }
+        slug: { type: string, minLength: 2, maxLength: 180 }
+        shortDescription: { type: string, maxLength: 320 }
+        description: { type: string }
+        categoryId: { type: integer, minimum: 1 }
+        destination: { type: ["string", "null"] }
+        duration: { type: ["string", "null"] }
+        pricingModel: { $ref: "#/components/schemas/PricingModel" }
+        priceAmount: { type: ["number", "null"], minimum: 0 }
+        currency: { type: ["string", "null"] }
+        pricingUnit: { type: ["string", "null"] }
+        imageUrl: { type: ["string", "null"] }
+        gallery: { type: array, items: { type: string } }
+        itinerary: { type: array, items: { $ref: "#/components/schemas/ItineraryItem" } }
+        inclusions: { type: array, items: { type: string } }
+        exclusions: { type: array, items: { type: string } }
+        optionalExtras: { type: array, items: { type: string } }
+        requirements: { type: ["string", "null"] }
+        importantNotes: { type: ["string", "null"] }
+        availability: { type: ["string", "null"] }
+        cancellationTerms: { type: ["string", "null"] }
+        faqs: { type: array, items: { $ref: "#/components/schemas/PackageFaq" } }
+        featured: { type: boolean }
+        seoTitle: { type: ["string", "null"] }
+        seoDescription: { type: ["string", "null"] }
+      required: [name, slug, shortDescription, description, categoryId, pricingModel]
+    PackageUpdate:
+      type: object
+      properties:
+        name: { type: string, minLength: 2, maxLength: 160 }
+        slug: { type: string, minLength: 2, maxLength: 180 }
+        shortDescription: { type: string, maxLength: 320 }
+        description: { type: string }
+        categoryId: { type: integer, minimum: 1 }
+        destination: { type: ["string", "null"] }
+        duration: { type: ["string", "null"] }
+        pricingModel: { $ref: "#/components/schemas/PricingModel" }
+        priceAmount: { type: ["number", "null"], minimum: 0 }
+        currency: { type: ["string", "null"] }
+        pricingUnit: { type: ["string", "null"] }
+        imageUrl: { type: ["string", "null"] }
+        gallery: { type: array, items: { type: string } }
+        itinerary: { type: array, items: { $ref: "#/components/schemas/ItineraryItem" } }
+        inclusions: { type: array, items: { type: string } }
+        exclusions: { type: array, items: { type: string } }
+        optionalExtras: { type: array, items: { type: string } }
+        requirements: { type: ["string", "null"] }
+        importantNotes: { type: ["string", "null"] }
+        availability: { type: ["string", "null"] }
+        cancellationTerms: { type: ["string", "null"] }
+        faqs: { type: array, items: { $ref: "#/components/schemas/PackageFaq" } }
+        featured: { type: boolean }
+        seoTitle: { type: ["string", "null"] }
+        seoDescription: { type: ["string", "null"] }
+        status: { $ref: "#/components/schemas/PublicationStatus" }
+      minProperties: 1
+    EnquiryInput:
+      type: object
+      properties:
+        fullName: { type: string, minLength: 2, maxLength: 160 }
+        email: { type: string, format: email, maxLength: 254 }
+        phone: { type: ["string", "null"], maxLength: 40 }
+        service: { type: string, enum: [travel, events, medical_tourism, pilgrimage, consultancy, general, package] }
+        packageSlug: { type: ["string", "null"] }
+        preferredDates: { type: ["string", "null"], maxLength: 120 }
+        participants: { type: ["integer", "null"], minimum: 1, maximum: 10000 }
+        departureLocation: { type: ["string", "null"], maxLength: 160 }
+        destination: { type: ["string", "null"], maxLength: 160 }
+        eventType: { type: ["string", "null"], maxLength: 120 }
+        budgetRange: { type: ["string", "null"], maxLength: 120 }
+        message: { type: string, minLength: 10, maxLength: 5000 }
+        contactConsent: { type: boolean, const: true }
+        marketingConsent: { type: boolean, default: false }
+      required: [fullName, email, service, message, contactConsent]
+    EnquiryReceipt:
+      type: object
+      properties:
+        reference: { type: string }
+        message: { type: string }
+      required: [reference, message]
+    EnquiryStatusInput:
+      type: object
+      properties:
+        status: { $ref: "#/components/schemas/EnquiryStatus" }
+      required: [status]
+    EnquiryNoteInput:
+      type: object
+      properties:
+        note: { type: string, minLength: 1, maxLength: 4000 }
+      required: [note]
+    EnquiryNote:
+      type: object
+      properties:
+        id: { type: integer }
+        note: { type: string }
+        author: { type: string }
+        createdAt: { type: string, format: date-time }
+      required: [id, note, author, createdAt]
+    AnonymizationReceipt:
+      type: object
+      properties:
+        message: { type: string }
+      required: [message]
+    EnquiryHistory:
+      type: object
+      properties:
+        id: { type: integer }
+        fromStatus: { type: ["string", "null"] }
+        toStatus: { type: string }
+        author: { type: string }
+        createdAt: { type: string, format: date-time }
+      required: [id, fromStatus, toStatus, author, createdAt]
+    AdminEnquiry:
+      type: object
+      properties:
+        id: { type: integer }
+        reference: { type: string }
+        fullName: { type: string }
+        email: { type: string, format: email }
+        phone: { type: ["string", "null"] }
+        service: { type: string }
+        packageSlug: { type: ["string", "null"] }
+        preferredDates: { type: ["string", "null"] }
+        participants: { type: ["integer", "null"] }
+        departureLocation: { type: ["string", "null"] }
+        destination: { type: ["string", "null"] }
+        eventType: { type: ["string", "null"] }
+        budgetRange: { type: ["string", "null"] }
+        message: { type: string }
+        status: { $ref: "#/components/schemas/EnquiryStatus" }
+        createdAt: { type: string, format: date-time }
+        notes:
+          type: array
+          items: { $ref: "#/components/schemas/EnquiryNote" }
+        history:
+          type: array
+          items: { $ref: "#/components/schemas/EnquiryHistory" }
+      required: [id, reference, fullName, email, phone, service, packageSlug, preferredDates, participants, departureLocation, destination, eventType, budgetRange, message, status, createdAt, notes, history]
+    AdminEnquiryList:
+      type: object
+      properties:
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/AdminEnquiry" }
+        total: { type: integer }
+        page: { type: integer }
+        pageSize: { type: integer }
+      required: [items, total, page, pageSize]
+    NewsletterInput:
+      type: object
+      properties:
+        email: { type: string, format: email, maxLength: 254 }
+        consent: { type: boolean, const: true }
+      required: [email, consent]
+    NewsletterReceipt:
+      type: object
+      properties:
+        status: { type: string, enum: [pending_confirmation, pending_configuration, already_subscribed] }
+        message: { type: string }
+      required: [status, message]
+    UnsubscribeInput:
+      type: object
+      properties:
+        token: { type: string, minLength: 32, maxLength: 256 }
+      required: [token]
+    UnsubscribeReceipt:
+      type: object
+      properties:
+        message: { type: string }
+      required: [message]
+    Article:
+      type: object
+      properties:
+        id: { type: integer }
+        title: { type: string }
+        slug: { type: string }
+        excerpt: { type: string }
+        body: { type: string }
+        category: { type: ["string", "null"] }
+        coverImageUrl: { type: ["string", "null"] }
+        publishedAt: { type: ["string", "null"], format: date-time }
+        seoTitle: { type: ["string", "null"] }
+        seoDescription: { type: ["string", "null"] }
+      required: [id, title, slug, excerpt, body, category, coverImageUrl, publishedAt, seoTitle, seoDescription]
+    AdminArticle:
+      allOf:
+        - $ref: "#/components/schemas/Article"
+        - type: object
+          properties:
+            status: { $ref: "#/components/schemas/PublicationStatus" }
+            updatedAt: { type: string, format: date-time }
+          required: [status, updatedAt]
+    ArticleList:
+      type: object
+      properties:
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/Article" }
+        total: { type: integer }
+        page: { type: integer }
+        pageSize: { type: integer }
+      required: [items, total, page, pageSize]
+    ArticleInput:
+      type: object
+      properties:
+        title: { type: string, minLength: 2, maxLength: 180 }
+        slug: { type: string, minLength: 2, maxLength: 200 }
+        excerpt: { type: string, maxLength: 500 }
+        body: { type: string, minLength: 1 }
+        category: { type: ["string", "null"] }
+        coverImageUrl: { type: ["string", "null"] }
+        seoTitle: { type: ["string", "null"] }
+        seoDescription: { type: ["string", "null"] }
+      required: [title, slug, excerpt, body]
+    ArticleUpdate:
+      allOf:
+        - $ref: "#/components/schemas/ArticleInput"
+        - type: object
+          properties:
+            status: { $ref: "#/components/schemas/PublicationStatus" }
+          minProperties: 1
+    Testimonial:
+      type: object
+      properties:
+        id: { type: integer }
+        quote: { type: string }
+        attribution: { type: ["string", "null"] }
+        service: { type: ["string", "null"] }
+      required: [id, quote, attribution, service]
+    AdminTestimonial:
+      allOf:
+        - $ref: "#/components/schemas/Testimonial"
+        - type: object
+          properties:
+            status: { $ref: "#/components/schemas/PublicationStatus" }
+          required: [status]
+    TestimonialInput:
+      type: object
+      properties:
+        quote: { type: string, minLength: 10, maxLength: 3000 }
+        attribution: { type: ["string", "null"], maxLength: 180 }
+        service: { type: ["string", "null"], maxLength: 80 }
+      required: [quote]
+    TestimonialUpdate:
+      type: object
+      properties:
+        quote: { type: string, minLength: 10, maxLength: 3000 }
+        attribution: { type: ["string", "null"], maxLength: 180 }
+        service: { type: ["string", "null"], maxLength: 80 }
+        status: { $ref: "#/components/schemas/PublicationStatus" }
+      minProperties: 1
+    AdminSession:
+      type: object
+      properties:
+        userId: { type: string }
+        email: { type: string, format: email }
+        role: { type: string, enum: [admin] }
+      required: [userId, email, role]
+    AdminDashboard:
+      type: object
+      properties:
+        enquiriesTotal: { type: integer }
+        enquiriesNew: { type: integer }
+        enquiriesInProgress: { type: integer }
+        packageEnquiries: { type: integer }
+        packagesPublished: { type: integer }
+        packagesDraft: { type: integer }
+        newsletterSubscribers: { type: integer }
+        articlesPublished: { type: integer }
+        enquiriesByService:
+          type: array
+          items:
+            type: object
+            properties:
+              service: { type: string }
+              count: { type: integer }
+            required: [service, count]
+        recentEnquiries:
+          type: array
+          items: { $ref: "#/components/schemas/AdminEnquiry" }
+      required: [enquiriesTotal, enquiriesNew, enquiriesInProgress, packageEnquiries, packagesPublished, packagesDraft, newsletterSubscribers, articlesPublished, enquiriesByService, recentEnquiries]
+    PublicSiteSettings:
+      type: object
+      properties:
+        companyName: { type: string }
+        contactEmail: { type: string, format: email }
+        primaryPhone: { type: string }
+        secondaryPhone: { type: string }
+        address: { type: string }
+        socialLinks:
+          type: array
+          items:
+            type: object
+            properties:
+              label: { type: string }
+              url: { type: string, format: uri }
+            required: [label, url]
+      required: [companyName, contactEmail, primaryPhone, secondaryPhone, address, socialLinks]
+    AdminSiteSettings:
+      allOf:
+        - $ref: "#/components/schemas/PublicSiteSettings"
+        - type: object
+          properties:
+            updatedAt: { type: string, format: date-time }
+          required: [updatedAt]
+    SiteSettingsInput:
+      type: object
+      properties:
+        contactEmail: { type: string, format: email }
+        primaryPhone: { type: string, maxLength: 40 }
+        secondaryPhone: { type: string, maxLength: 40 }
+        address: { type: string, maxLength: 240 }
+        socialLinks:
+          type: array
+          items:
+            type: object
+            properties:
+              label: { type: string }
+              url: { type: string, format: uri }
+            required: [label, url]
+      minProperties: 1
 
