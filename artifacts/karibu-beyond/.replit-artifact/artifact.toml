@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Karibu and Beyond"
+description = "A premium multi-page corporate website for Karibu and Beyond Ltd, featuring all five service divisions, an approval-gated package catalogue, enquiry workflows, newsletter subscriptions, and secure content administration."
+version = "1.0.0"
+id = "artifacts/karibu-beyond"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18909
+
+[services.development]
+run = "pnpm --filter @workspace/karibu-beyond run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/karibu-beyond", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/karibu-beyond/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18909"
+BASE_PATH = "/"

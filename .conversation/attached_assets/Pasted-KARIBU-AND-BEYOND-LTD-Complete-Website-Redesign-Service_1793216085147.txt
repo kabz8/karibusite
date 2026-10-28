@@ -1,0 +1,1400 @@
+KARIBU AND BEYOND LTD
+
+Complete Website Redesign, Service Packages, Enquiry Management and Vercel Deployment
+
+Act as an elite web design agency consisting of a senior brand designer, UX strategist, full-stack software engineer, database architect, security engineer, SEO specialist, and QA engineer.
+
+Your assignment is to rebuild the website for Karibu and Beyond Ltd into a premium, modern, fully functional corporate website.
+
+EXISTING WEBSITE:
+https://karibuandbeyondltd.com/
+
+DEVELOPMENT PLATFORM:
+Replit.
+
+PRODUCTION HOSTING:
+Vercel.
+
+DATABASE:
+Supabase PostgreSQL or another suitable managed PostgreSQL service.
+
+OFFICIAL LOGO:
+I will attach the company's existing logo to this conversation. Inspect and use the actual attached file.
+
+PROJECT GOAL:
+
+Create a sophisticated, internationally credible corporate website that presents all the company's service divisions, supports a comprehensive service package catalogue, generates enquiries, and provides a secure administration dashboard.
+
+The website must be complete enough for production deployment, subject to the configuration of external accounts, verification of business information, and successful production testing.
+
+Do not build only a homepage.
+
+Do not produce a visual prototype with non-functional buttons.
+
+Do not stop after creating the initial design.
+
+Implement the complete application, including the frontend, backend, database, service pages, package management, forms, admin dashboard, legal pages, SEO, testing, and Vercel deployment preparation.
+
+==================================================
+PART 1: INSPECT THE BRAND AND EXISTING WEBSITE
+
+Begin by inspecting the existing website and the attached logo.
+
+Use the following verified business information as the starting point.
+
+COMPANY:
+Karibu and Beyond Ltd.
+
+CURRENT BRAND POSITIONING:
+"Premium service, considered for a global world."
+
+The company presents itself as a diversified service provider coordinating premium travel, events, consultancy, and medical tourism solutions for individuals, corporations, and institutions.
+
+THE FIVE BUSINESS DIVISIONS:
+
+1. Tours, Travel and Transfers.
+2. Events Management.
+3. Medical Tourism.
+4. Pilgrimage Tourism.
+5. Consultancy.
+
+EXISTING TRAVEL SERVICES MENTIONED ON THE HOMEPAGE:
+
+- Bespoke travel management.
+- Luxury safaris.
+- Ticketing.
+- Executive transfers.
+- Tailored itineraries.
+- Travel concierge and ground support.
+- Accommodation and transport coordination.
+- Travel disruption support.
+
+EXISTING EVENTS SERVICES MENTIONED:
+
+- Conferences.
+- Summits.
+- Weddings.
+- Product launches.
+- Event logistics.
+
+EXISTING MEDICAL TOURISM POSITIONING:
+
+- International treatment coordination.
+- Hospital liaison.
+- Patient support.
+- Travel and related arrangements.
+
+EXISTING PILGRIMAGE POSITIONING:
+
+- Faith-based travel programmes.
+- Group pilgrimages.
+- Pilgrimage coordination.
+
+CONSULTANCY:
+
+Consultancy is part of the company's established positioning. Its exact specialist disciplines and packages must be verified before specific offerings are published.
+
+EXISTING CONTACT DETAILS:
+
+Telephone 1:
++254 729 861 607
+
+Telephone 2:
++254 711 556 151
+
+Location:
+Embakasi, North Airport Road, Kenya.
+
+Geographic positioning:
+Worldwide, with East Africa and India specifically highlighted.
+
+The existing homepage includes consultation calls to action, service divisions, testimonials, a newsletter, email contact, and WhatsApp contact.
+
+The existing website also describes client discretion, relationship management, coordinated delivery, and international reach as important aspects of its service approach.
+
+IMPORTANT VERIFICATION RULES:
+
+Some existing website claims, including industry accreditations, hospital partnerships, and the extent of the international partner network, have not been independently verified.
+
+Preserve appropriate existing business information, but do not expand claims or present them as independently verified credentials.
+
+Retrieve the current business email from the source website if possible. If it cannot be verified, provide an editable administrator setting rather than inventing an address.
+
+Inspect existing service pages and available public package information.
+
+If the original website cannot be accessed reliably, continue using the information above and document what could not be verified.
+
+Do not invent:
+
+- Company registration details.
+- Certifications or accreditations.
+- Partnerships.
+- Prices.
+- Package inclusions.
+- Client reviews.
+- Customer statistics.
+- Founding dates.
+- Staff biographies.
+- Office locations.
+- Confirmed booking availability.
+
+Where information is missing, create an unpublished content record or mark the field as requiring business confirmation.
+
+==================================================
+PART 2: BRAND IDENTITY AND COLOUR SYSTEM
+
+The attached company logo is the primary source of truth for the website's brand identity.
+
+Do not arbitrarily impose a new colour palette.
+
+STEP 1: INSPECT THE LOGO.
+
+Determine:
+
+- Dominant brand colour.
+- Secondary brand colour.
+- Accent colours.
+- Logo background.
+- Typography and visual character.
+- Whether the asset has transparency.
+- Which background colours provide sufficient contrast.
+
+Extract the actual HEX values from the image where possible.
+
+STEP 2: ESTABLISH DESIGN TOKENS.
+
+Define reusable design tokens for:
+
+- Primary brand colour.
+- Primary hover colour.
+- Secondary brand colour.
+- Accent colour.
+- Main background.
+- Alternate background.
+- Surface background.
+- Main text.
+- Secondary text.
+- Muted text.
+- Borders.
+- Success.
+- Warning.
+- Error.
+- Focus indicators.
+
+Choose complementary neutral colours that enhance the logo.
+
+Use the brand's actual colours consistently across navigation, buttons, links, headings, forms, package listings, and other important interface elements.
+
+Do not force colours that clash with the logo.
+
+LOGO REQUIREMENTS:
+
+- Use the official attached logo.
+- Preserve the original colours.
+- Preserve proportions.
+- Do not stretch or distort it.
+- Do not replace it with typed company text.
+- Do not create an unrelated replacement logo.
+- Do not use filters that change the brand colours.
+- Use a suitable light or dark version if an official variant is provided.
+- Create a favicon from the existing artwork where appropriate.
+
+If the supplied asset cannot be used directly, explain why and use the original file in a compatible format without redesigning it.
+
+DESIGN STYLE:
+
+Create a premium corporate aesthetic inspired by high-end hospitality, international travel management, executive services, and established consulting firms.
+
+Use:
+
+- Generous whitespace.
+- Excellent typography.
+- Refined photography.
+- Clear visual hierarchy.
+- Editorial layouts.
+- Restrained borders.
+- Subtle, purposeful animation.
+- Elegant transitions.
+- Consistent spacing.
+- Well-designed forms.
+- High-quality responsive layouts.
+
+Use a sophisticated heading font and a highly readable body font.
+
+Inter is a suitable body-font choice. A refined serif may be used for selected large headlines if it complements the logo.
+
+Avoid:
+
+- Generic AI website styling.
+- Excessive gradients.
+- Neon accents.
+- Glassmorphism.
+- Excessive shadows.
+- Excessive rounded cards.
+- Unnecessary icons.
+- Busy backgrounds.
+- Artificial-looking imagery.
+- Overly decorative typography.
+- Repetitive card layouts.
+- Unnecessary animation.
+
+The site should feel custom-designed for Karibu and Beyond Ltd, not copied from a generic template.
+
+==================================================
+PART 3: WEBSITE ARCHITECTURE
+
+Build a complete multi-page website.
+
+Use Next.js, TypeScript, React, and a suitable component architecture.
+
+Create these principal routes:
+
+MAIN WEBSITE
+
+/
+Homepage.
+
+/about
+About the company.
+
+/why-choose-us
+Service standards and differentiators.
+
+/services
+Overview of all five divisions.
+
+/packages
+Complete service package catalogue.
+
+/packages/[slug]
+Individual package details.
+
+/experiences
+Curated experiences and service highlights.
+
+/insights
+Articles and company insights.
+
+/insights/[slug]
+Individual article pages.
+
+/faq
+Frequently asked questions.
+
+/contact
+Contact information and general enquiry form.
+
+/consultation
+Consultation request page.
+
+TRAVEL
+
+/services/tours-travel-transfers
+
+/travel
+
+/travel/luxury-safaris
+
+/travel/curated-tours
+
+/travel/flight-booking
+
+/travel/executive-transfers
+
+/travel/hotel-reservations
+
+/travel/destinations
+
+/travel/destinations/[slug]
+
+EVENTS
+
+/services/events-management
+
+/events
+
+/events/corporate
+
+/events/conferences
+
+/events/weddings
+
+/events/product-launches
+
+/events/event-production
+
+/events/request-proposal
+
+MEDICAL TOURISM
+
+/services/medical-tourism
+
+/medical-tourism/how-it-works
+
+/medical-tourism/treatment-enquiries
+
+/medical-tourism/patient-support
+
+/medical-tourism/faq
+
+PILGRIMAGE
+
+/services/pilgrimage-tourism
+
+/pilgrimage
+
+/pilgrimage/group-journeys
+
+/pilgrimage/planning
+
+/pilgrimage/request-itinerary
+
+/pilgrimage/faq
+
+CONSULTANCY
+
+/services/consultancy
+
+/consultation/request
+
+LEGAL AND SYSTEM PAGES
+
+/privacy-policy
+
+/cookie-policy
+
+/terms-and-conditions
+
+/accessibility
+
+/unsubscribe
+
+/sitemap.xml
+
+/robots.txt
+
+A custom 404 page and suitable error states.
+
+Implement redirects for important legacy URLs when necessary.
+
+Every page must have a clear purpose, unique content, and functioning navigation.
+
+Do not create dozens of empty pages simply to satisfy a route list.
+
+Where a proposed service has not been verified, keep its detailed page unpublished until approved by the business.
+
+==================================================
+PART 4: HEADER, NAVIGATION AND FOOTER
+
+DESKTOP NAVIGATION:
+
+- Home.
+- About Us.
+- Services.
+- Packages.
+- Experiences.
+- Insights.
+- Contact.
+
+The Services dropdown must include all five business divisions.
+
+The Packages link should be easy to find.
+
+Primary CTA:
+Request a Consultation.
+
+SECONDARY CTA:
+Explore Our Services.
+
+HEADER BEHAVIOUR:
+
+- Integrate the logo attractively.
+- Use a transparent hero header if suitable.
+- Transition to a solid background when scrolling.
+- Maintain readable navigation.
+- Provide visible active states.
+- Prevent layout shifts.
+- Support keyboard navigation.
+
+MOBILE NAVIGATION:
+
+Create a refined mobile navigation drawer or dropdown.
+
+Include:
+
+- Accessible menu controls.
+- Keyboard support.
+- Escape-to-close behaviour.
+- Appropriate focus management.
+- Touch-friendly buttons.
+- Clear navigation hierarchy.
+
+FOOTER:
+
+Include:
+
+- Official logo.
+- Company overview.
+- Service links.
+- Package catalogue.
+- Experiences.
+- Insights.
+- Contact details.
+- Newsletter.
+- Privacy Policy.
+- Cookie Policy.
+- Terms and Conditions.
+- Accessibility.
+- Verified social media links.
+- Current year.
+
+Add a WhatsApp contact button using the verified business number.
+
+Ensure floating buttons do not cover important mobile controls.
+
+==================================================
+PART 5: HOMEPAGE
+
+Create an elegant, conversion-focused homepage.
+
+SECTION 1: HERO
+
+Use high-quality travel, hospitality, or international service imagery that complements the brand.
+
+Use the existing brand positioning as inspiration.
+
+Suggested headline:
+
+"Premium service, considered for a global world."
+
+Suggested supporting copy:
+
+"From thoughtfully planned journeys and exceptional events to international medical travel and pilgrimage coordination, Karibu and Beyond brings the people, expertise, and details together."
+
+Primary CTA:
+Begin a Consultation.
+
+Secondary CTA:
+Explore Our Services.
+
+Do not clutter the hero with too many buttons.
+
+Do not use a carousel unless it materially improves the experience.
+
+If using a carousel, provide accessible controls, reduced-motion support, and appropriate timing.
+
+SECTION 2: COMPANY INTRODUCTION
+
+Explain what the company does and whom it serves.
+
+Communicate a coordinated service approach.
+
+SECTION 3: SERVICE DIVISIONS
+
+Show all five business divisions:
+
+1. Tours, Travel and Transfers.
+2. Events Management.
+3. Medical Tourism.
+4. Pilgrimage Tourism.
+5. Consultancy.
+
+Each division should have:
+
+- Appropriate photography.
+- A concise description.
+- A clear link to its page.
+- A unique visual treatment.
+
+SECTION 4: FEATURED PACKAGES
+
+Retrieve published packages from the database.
+
+Show a curated selection with accurate information.
+
+Do not hardcode package cards.
+
+SECTION 5: WHY CHOOSE US
+
+Explain the company's service approach using accurate, credible language.
+
+SECTION 6: HOW IT WORKS
+
+Present an illustrative four-step process:
+
+1. Share your requirements.
+2. Discuss suitable options.
+3. Receive a tailored proposal.
+4. Confirm the arrangements.
+
+Adapt the sequence where required by the actual service.
+
+SECTION 7: GLOBAL REACH
+
+Highlight East Africa and India, consistent with the existing website.
+
+Describe other international reach only to the extent supported by the company's actual operating model.
+
+Do not fabricate offices or physical locations.
+
+SECTION 8: TESTIMONIALS
+
+Inspect the testimonials on the existing homepage.
+
+They must not automatically be treated as independently verified.
+
+Preserve them only when the business confirms authenticity and permission to republish.
+
+If verification is pending, keep them unpublished.
+
+Implement administrator-managed testimonials.
+
+SECTION 9: INSIGHTS
+
+Show recently published articles.
+
+SECTION 10: FINAL CTA
+
+Headline:
+"Tell us what you're planning."
+
+Invite visitors to request a consultation.
+
+SECTION 11: NEWSLETTER
+
+Create a working newsletter subscription form.
+
+SECTION 12: FOOTER
+
+Use the complete global footer.
+
+==================================================
+PART 6: COMPLETE SERVICE PACKAGE CATALOGUE
+
+Build a database-driven package catalogue that can be managed through the admin dashboard.
+
+This is a major feature, not a decorative homepage section.
+
+The current publicly accessible homepage did not provide a verified package list with authoritative prices.
+
+Therefore, do not fabricate a package catalogue and present it as the company's current official offering.
+
+Instead:
+
+1. Extract any real packages discovered on accessible existing pages.
+2. Preserve their exact verified details.
+3. Create the package system.
+4. Provide draft records or unpublished examples where needed.
+5. Allow the administrator to publish approved packages.
+6. Display only packages approved for publication.
+
+PACKAGE CATEGORIES:
+
+Support these categories:
+
+- Tours and Travel.
+- Luxury Safaris.
+- Curated Tours.
+- Flights and Transfers.
+- Events Management.
+- Medical Tourism.
+- Pilgrimage Tourism.
+- Consultancy.
+- Custom Services.
+
+Allow administrators to create additional categories.
+
+These categories are organizational options and do not imply that every category has an existing fixed-price offer.
+
+PACKAGE PRICING MODELS:
+
+Support:
+
+1. Fixed Price.
+2. Starting From.
+3. Per Person.
+4. Per Group.
+5. Per Day.
+6. Custom Quote.
+7. Contact for Pricing.
+
+Support currencies including KES and USD, with the ability to configure additional currencies.
+
+Do not convert currencies automatically unless a reliable exchange-rate integration has been implemented.
+
+Do not invent prices.
+
+Do not display fake discounts, fake original prices, or artificial scarcity.
+
+For services requiring personalized proposals, display:
+
+"Request a Quote."
+
+PACKAGE LISTING:
+
+Route:
+/packages
+
+Implement:
+
+- Search.
+- Category filters.
+- Destination filters where relevant.
+- Duration filters where relevant.
+- Pricing-model filters.
+- Price-range filters where meaningful.
+- Sorting.
+- Pagination.
+- Empty states.
+- Loading states.
+- Responsive layouts.
+- Clear filter reset controls.
+
+Only published packages should appear.
+
+PACKAGE DETAIL:
+
+Route:
+/packages/[slug]
+
+Support:
+
+- Package name.
+- Short description.
+- Full description.
+- Category.
+- Destination or location.
+- Main image.
+- Image gallery.
+- Duration.
+- Itinerary where applicable.
+- Inclusions.
+- Exclusions.
+- Optional extras.
+- Requirements.
+- Important notes.
+- Pricing model.
+- Currency.
+- Verified price.
+- Pricing unit.
+- Availability information where maintained.
+- Cancellation terms where applicable.
+- FAQs.
+- Related packages.
+- Enquiry CTA.
+- SEO metadata.
+
+Hide irrelevant or empty fields.
+
+Do not fabricate itineraries, inclusions, dates, accommodation arrangements, or prices.
+
+PACKAGE ENQUIRY:
+
+Provide a package-specific enquiry form.
+
+Fields may include:
+
+- Full name.
+- Email.
+- Telephone.
+- Selected package.
+- Preferred dates.
+- Number of travellers or participants.
+- Departure location where applicable.
+- Destination where applicable.
+- Budget range, optional.
+- Special requirements.
+- Additional message.
+- Privacy acknowledgement.
+- Optional separate marketing consent.
+
+Use conditional fields appropriate to the package type.
+
+On submission:
+
+- Validate the request.
+- Save it to the database.
+- Generate a unique reference.
+- Show a confirmation.
+- Notify the configured business email.
+- Send a customer acknowledgement where email is configured.
+
+Clearly explain that an enquiry is not a confirmed booking.
+
+PACKAGE ADMINISTRATION:
+
+Administrators must be able to:
+
+- Create packages.
+- Edit packages.
+- Duplicate packages.
+- Preview packages.
+- Publish packages.
+- Unpublish packages.
+- Archive packages.
+- Manage categories.
+- Set prices and currencies.
+- Manage package images.
+- Manage itineraries.
+- Manage inclusions and exclusions.
+- Set availability details.
+- Manage package FAQs.
+- Feature packages on the homepage.
+- Configure SEO.
+- View package enquiries.
+- Update enquiry statuses.
+- Export authorized records.
+
+PACKAGE DATABASE:
+
+Create an appropriate relational model for:
+
+- Packages.
+- Categories.
+- Images.
+- Pricing.
+- Itinerary items.
+- Inclusions and exclusions.
+- FAQs.
+- Publication status.
+- Availability details.
+- Enquiries.
+
+Use structured fields, suitable relationships, validation, and database constraints.
+
+==================================================
+PART 7: SERVICE-SPECIFIC CONTENT AND FORMS
+
+TRAVEL, TOURS AND TRANSFERS
+
+Present verified services such as:
+
+- Bespoke travel planning.
+- Luxury safari coordination.
+- Curated tours.
+- Ticketing enquiries.
+- Executive transfers.
+- Hotel and accommodation coordination.
+- Group travel.
+- Itinerary planning.
+- Travel assistance.
+
+Do not claim that the website has live flight inventory, real-time hotel availability, automatic ticket issuance, or guaranteed transport availability unless those systems have been implemented.
+
+Travel enquiry fields should include:
+
+- Contact details.
+- Departure location.
+- Destination.
+- Travel dates.
+- Number of travellers.
+- Travel category.
+- Budget range, optional.
+- Preferences.
+- Additional notes.
+
+EVENTS MANAGEMENT
+
+Include relevant verified service descriptions for:
+
+- Conferences.
+- Summits.
+- Weddings.
+- Product launches.
+- Corporate events.
+- Event coordination.
+
+Do not imply that all event production or technical services are available unless confirmed.
+
+Event enquiry fields:
+
+- Contact details.
+- Event type.
+- Proposed date.
+- Venue or destination.
+- Expected attendance.
+- Budget range.
+- Services requested.
+- Additional information.
+
+MEDICAL TOURISM
+
+Explain international medical travel coordination and patient support.
+
+Use clear language distinguishing coordination services from clinical treatment.
+
+Do not provide medical diagnoses, prescribe treatments, or guarantee medical outcomes.
+
+Do not fabricate hospital affiliations.
+
+Avoid collecting sensitive medical records in the general enquiry form.
+
+Use suitable privacy safeguards and a separate secure workflow if sensitive medical information is ever required.
+
+PILGRIMAGE TOURISM
+
+Support individual, family, group, and organizational enquiries.
+
+Explain the actual coordination services offered.
+
+Provide itinerary and quotation requests.
+
+Do not invent pilgrimage departure dates, package prices, visas, or confirmed availability.
+
+CONSULTANCY
+
+Use the existing consultancy positioning.
+
+Until specific consulting disciplines are verified, invite organizations and individuals to explain their requirements.
+
+Do not invent specialist consulting packages or professional credentials.
+
+==================================================
+PART 8: CONTACT AND WHATSAPP
+
+Create a complete contact page.
+
+Display the verified telephone numbers:
+
++254 729 861 607
++254 711 556 151
+
+Display:
+Embakasi, North Airport Road, Kenya.
+
+Retrieve and verify the existing email address.
+
+If unavailable, allow an administrator to configure it.
+
+Do not invent a business email.
+
+CONTACT FORM:
+
+- Full name.
+- Email.
+- Telephone.
+- Organization, optional.
+- Service of interest.
+- Preferred contact method.
+- Subject.
+- Message.
+- Privacy acknowledgement.
+- Optional separate marketing consent.
+
+Implement:
+
+- Client-side validation.
+- Server-side validation.
+- Spam protection.
+- Rate limiting.
+- Sensible field length limits.
+- Duplicate submission protection.
+- Accessible errors.
+- Clear success feedback.
+- Persistent database storage.
+- Unique enquiry references.
+
+WHATSAPP:
+
+Implement click-to-chat using the verified number.
+
+Support appropriate prefilled messages.
+
+Encode messages correctly.
+
+Do not claim that a message was sent merely because the user opened WhatsApp.
+
+==================================================
+PART 9: DATABASE AND BACKEND
+
+Use PostgreSQL with a suitable managed provider.
+
+Recommended provider:
+Supabase.
+
+Use Prisma or an equivalent appropriate database layer.
+
+Implement migrations.
+
+Create tables or equivalent models for:
+
+- Admin profiles.
+- Enquiries.
+- Enquiry status history.
+- Internal enquiry notes.
+- Packages.
+- Package categories.
+- Package images.
+- Package itinerary items.
+- Package FAQs.
+- Articles.
+- Article categories.
+- Testimonials.
+- Newsletter subscribers.
+- Consent records.
+- Site settings.
+- Media metadata.
+- Audit logs.
+
+Use appropriate:
+
+- Foreign keys.
+- Constraints.
+- Indexes.
+- Timestamps.
+- Authorization.
+- Data validation.
+- Retention policies.
+
+Never expose private enquiries publicly.
+
+Do not store persistent application data in ephemeral local files.
+
+Do not use an in-memory database in production.
+
+==================================================
+PART 10: ADMIN DASHBOARD
+
+Create a secure administration interface.
+
+Route:
+/admin
+
+AUTHENTICATION:
+
+- Secure administrator authentication.
+- Server-side authorization.
+- Secure sessions.
+- Appropriate cookie settings.
+- Rate limiting.
+- Password reset support where applicable.
+- No public administrator registration.
+- No hardcoded production passwords.
+- No privileged access based solely on obscuring a URL.
+
+ADMIN OVERVIEW:
+
+Display real database-derived metrics:
+
+- Total enquiries.
+- New enquiries.
+- Enquiries by service.
+- Package enquiries.
+- Enquiry statuses.
+- Published packages.
+- Draft packages.
+- Newsletter subscribers.
+- Recent articles.
+- Recent activity.
+
+Display empty states instead of fabricated numbers.
+
+ENQUIRY MANAGEMENT:
+
+Allow administrators to:
+
+- View enquiries.
+- Search.
+- Filter by service.
+- Filter by status.
+- Filter by date.
+- Open enquiry details.
+- Change status.
+- Add internal notes.
+- View status history.
+- Export authorized records.
+- Manage deletion or anonymization where appropriate.
+
+PACKAGE MANAGEMENT:
+
+Implement the complete package management functionality described above.
+
+CONTENT MANAGEMENT:
+
+Allow authorized administrators to:
+
+- Create articles.
+- Edit articles.
+- Preview articles.
+- Publish and unpublish articles.
+- Manage categories.
+- Manage testimonials.
+- Edit approved website content.
+- Manage featured packages.
+- Update contact settings.
+- Manage social links.
+- Update relevant site settings.
+
+MEDIA:
+
+If image uploads are implemented, use appropriate object storage.
+
+Validate file types and sizes.
+
+Restrict uploads to authorized users.
+
+Do not depend on serverless local storage for persistent images.
+
+==================================================
+PART 11: EMAIL AND NEWSLETTER
+
+Integrate Resend or an equivalent transactional email provider.
+
+Implement:
+
+- New enquiry notifications.
+- Package enquiry notifications.
+- Consultation notifications.
+- Event proposal notifications.
+- Customer acknowledgements.
+- Newsletter subscription confirmation where configured.
+- Unsubscribe handling.
+
+Use server-side environment variables.
+
+Require a verified sending domain before production email delivery.
+
+Do not fake successful delivery.
+
+If credentials are unavailable, document the exact setup required.
+
+NEWSLETTER:
+
+Implement:
+
+- Email validation.
+- Duplicate subscription handling.
+- Consent recording.
+- Subscription status.
+- Secure unsubscribe links.
+- Unsubscribe processing.
+- Appropriate spam protection.
+
+Do not automatically enroll enquiry form users into marketing communications.
+
+==================================================
+PART 12: PRIVACY AND SECURITY
+
+Implement:
+
+- Secure authentication.
+- Server-side authorization.
+- Input validation.
+- Output escaping.
+- Rate limiting.
+- Spam protection.
+- Appropriate security headers.
+- Content Security Policy where suitable.
+- Secure environment variables.
+- Database access controls.
+- Audit logging.
+- Error handling.
+- Appropriate data retention and deletion procedures.
+
+Never expose:
+
+- Passwords.
+- Authentication secrets.
+- Database service-role keys.
+- Email API keys.
+- Private enquiry details.
+- Internal administrative notes.
+
+Do not log sensitive medical information.
+
+Create:
+
+- Privacy Policy.
+- Cookie Policy.
+- Terms and Conditions.
+- Accessibility Statement.
+
+Write these pages to match the actual website functionality.
+
+Flag business-specific clauses for appropriate legal review.
+
+COOKIE CONSENT:
+
+Where consent is required:
+
+- Explain cookie categories.
+- Allow acceptance of optional cookies.
+- Allow rejection of optional cookies.
+- Provide preference controls.
+- Store preferences appropriately.
+- Allow users to change their preferences later.
+- Do not activate non-essential tracking before required consent.
+
+==================================================
+PART 13: SEO AND PERFORMANCE
+
+Implement:
+
+- Unique page titles.
+- Unique meta descriptions.
+- Canonical URLs.
+- Open Graph metadata.
+- Social-sharing images.
+- XML sitemap.
+- robots.txt.
+- Semantic HTML.
+- Appropriate structured data.
+- Descriptive image alt text.
+- Internal links.
+- Breadcrumbs where useful.
+- Clean URL slugs.
+- Custom 404 page.
+- Appropriate redirects.
+
+Generate package metadata dynamically.
+
+Do not invent review ratings, addresses, prices, accreditations, or awards.
+
+Optimize for mobile performance.
+
+Use:
+
+- Responsive images.
+- Modern image formats where practical.
+- Lazy loading.
+- Appropriate caching.
+- Efficient queries.
+- Pagination.
+- Minimal unnecessary JavaScript.
+- Reduced layout shifts.
+- Accessible loading and error states.
+
+Test performance rather than claiming unmeasured results.
+
+==================================================
+PART 14: ACCESSIBILITY AND RESPONSIVE DESIGN
+
+Design for:
+
+- Android phones.
+- iPhones.
+- Tablets.
+- Laptops.
+- Desktop monitors.
+
+Ensure:
+
+- No horizontal overflow.
+- Readable text.
+- Accessible navigation.
+- Visible keyboard focus.
+- Correct form labels.
+- Appropriate colour contrast.
+- Screen-reader-friendly feedback.
+- Touch-friendly buttons.
+- Reduced-motion support.
+- Proper dialog focus management.
+
+Aim to meet WCAG 2.2 AA principles where applicable.
+
+==================================================
+PART 15: TESTING
+
+Implement automated tests using appropriate tools, including Playwright where suitable.
+
+Test:
+
+PUBLIC PAGES:
+
+- Homepage.
+- About.
+- All five service divisions.
+- Packages.
+- Package details.
+- Package filtering.
+- Contact.
+- Consultation.
+- Event enquiries.
+- Medical tourism enquiries.
+- Pilgrimage enquiries.
+- Articles.
+- FAQ.
+- Legal pages.
+- Custom 404.
+
+ADMIN:
+
+- Authentication.
+- Authorization.
+- Package creation.
+- Package editing.
+- Package publishing.
+- Package archiving.
+- Enquiry management.
+- Article publishing.
+- Site settings.
+
+FUNCTIONALITY:
+
+- Form validation.
+- Database persistence.
+- Email failure handling.
+- Newsletter subscription.
+- Unsubscribe processing.
+- Cookie preferences.
+- Mobile navigation.
+- SEO metadata.
+- Broken links.
+- Image loading.
+- Privacy protections.
+
+Before completion:
+
+- Run the production build.
+- Run TypeScript checks.
+- Run linting.
+- Run automated tests.
+- Fix critical errors.
+- Verify database migrations.
+- Check for exposed secrets.
+- Test representative mobile layouts.
+
+Document tests that could not be completed because external credentials or services were unavailable.
+
+==================================================
+PART 16: VERCEL DEPLOYMENT
+
+Prepare the application for Vercel.
+
+Provide:
+
+- Complete source code.
+- README.md.
+- .env.example.
+- DATABASE_SETUP.md.
+- DEPLOYMENT.md.
+- SECURITY.md.
+- TESTING.md.
+- Database migrations.
+- Required provider configuration instructions.
+
+Document the actual environment variables used by the application.
+
+Examples may include:
+
+DATABASE_URL=
+DIRECT_URL=
+AUTH_SECRET=
+RESEND_API_KEY=
+EMAIL_FROM=
+CONTACT_NOTIFICATION_EMAIL=
+NEXT_PUBLIC_SITE_URL=
+
+Only include variables actually used.
+
+Never expose privileged secrets through public environment variables.
+
+Provide step-by-step instructions for:
+
+1. Connecting the GitHub repository.
+2. Importing the application into Vercel.
+3. Configuring the production database.
+4. Adding environment variables.
+5. Applying database migrations.
+6. Deploying a preview.
+7. Testing the preview.
+8. Deploying to production.
+9. Connecting the custom domain.
+10. Configuring DNS using the actual values provided by Vercel.
+11. Verifying HTTPS.
+12. Testing production forms and email delivery.
+
+Do not invent DNS records.
+
+Do not replace the existing live website before the new deployment has been tested.
+
+==================================================
+PART 17: EXECUTION
+
+Work through these phases without waiting for routine approvals.
+
+PHASE 1:
+Inspect the existing website and attached logo.
+
+PHASE 2:
+Establish the brand system and application architecture.
+
+PHASE 3:
+Build the global design system, navigation, footer, and homepage.
+
+PHASE 4:
+Implement all required service and company pages.
+
+PHASE 5:
+Implement the database-driven package catalogue.
+
+PHASE 6:
+Implement enquiry forms, database persistence, email, and newsletter.
+
+PHASE 7:
+Implement the secure admin dashboard.
+
+PHASE 8:
+Implement SEO, legal pages, privacy, accessibility, and performance improvements.
+
+PHASE 9:
+Test the application and fix errors.
+
+PHASE 10:
+Prepare the Vercel deployment and documentation.
+
+Do not stop after any phase.
+
+If the project requires multiple implementation passes, maintain a checklist and continue.
+
+If a provider needs credentials, implement the integration and document the required configuration while continuing with other work.
+
+Do not mark unfinished work as complete.
+
+Do not replace functional requirements with static mockups.
+
+Do not publish fabricated packages or unverified business information.
+
+==================================================
+PART 18: FINAL ACCEPTANCE CRITERIA
+
+The application is ready for handover only when:
+
+- The attached logo is integrated correctly.
+- The website palette complements the actual logo.
+- All required pages are implemented.
+- All five business divisions are represented.
+- The package catalogue is database-driven.
+- Administrators can manage packages without changing code.
+- Package detail pages work.
+- Package enquiries persist in the database.
+- Contact forms work.
+- Newsletter subscription and unsubscribe work.
+- Email integration is tested where credentials are available.
+- Administrator authentication and authorization work.
+- Content management works.
+- Legal pages are present.
+- SEO infrastructure works.
+- Responsive layouts are tested.
+- Automated tests have been run.
+- The production build succeeds.
+- Secrets are not exposed.
+- Deployment documentation is complete.
+- Remaining external dependencies are documented honestly.
+
+FINAL REPORT:
+
+Provide:
+
+1. Pages implemented.
+2. Package system functionality.
+3. Database and backend functionality.
+4. Admin dashboard functionality.
+5. Integrations tested.
+6. Test results.
+7. Deployment readiness.
+8. External accounts or credentials still required.
+9. Business information requiring confirmation.
+10. Any incomplete requirements and their exact reasons.
+
+Begin by inspecting the existing website and attached logo. Then implement the complete application.
