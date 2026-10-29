@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { Link, Route, Router, Switch, useLocation, useParams } from "wouter";
 import {
   ArrowRight,
@@ -88,46 +88,45 @@ function MetaManager() {
   return null;
 }
 
+function ScrollToTop() {
+  const [location] = useLocation();
+
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [location]);
+
+  return null;
+}
+
 function HomePage() {
   return (
     <>
       <section className="hero">
         <img
           className="hero-image"
-          src={imagePath("mara-dawn.jpg")}
-          alt="Dawn light over an East African landscape"
+          src={imagePath("karibu-pilgrimage-interior.jpg")}
+          alt="Ornate interior of a historic basilica"
           fetchPriority="high"
         />
         <div className="hero-shade" />
         <div className="container-wide hero-content">
           <div className="hero-copy">
-            <span className="hero-kicker"><i /> Kenya · East Africa · India</span>
-            <h1 className="serif">
-              Premium service,
-              <em> considered for a global world.</em>
-            </h1>
+            <span className="hero-kicker">Pilgrimage</span>
+            <h1 className="serif">Pilgrimage <em>Tourism</em></h1>
             <p>
-              From thoughtfully planned journeys and exceptional events to
-              international medical travel and pilgrimage coordination, we
-              bring the people, expertise and details together.
+              Considered, respectful and professionally organised faith-based
+              travel — supporting individuals and faith-based organisations on
+              journeys of spiritual significance.
             </p>
             <div className="hero-actions">
-              <Link className="button button-gold" href="/consultation">
-                Begin a consultation <ArrowRight size={16} aria-hidden="true" />
+              <Link className="button button-gold" href="/pilgrimage/request-itinerary">
+                Request a Proposal <ArrowRight size={16} aria-hidden="true" />
               </Link>
               <Link className="hero-secondary" href="/services">
-                Explore our services <ArrowUpRight size={15} aria-hidden="true" />
+                Explore Services
               </Link>
             </div>
           </div>
-          <div className="hero-note">
-            <span>ONE COMPANY</span>
-            <strong className="serif">Endless possibilities.</strong>
-          </div>
-        </div>
-        <div className="hero-caption container-wide">
-          <span>Thoughtful coordination, from first conversation to next step</span>
-          <span>01 — 05</span>
         </div>
       </section>
 
@@ -501,6 +500,7 @@ function NotFound() {
 function AppRoutes() {
   return (
     <>
+      <ScrollToTop />
       <MetaManager />
       <SiteShell>
         <Switch>

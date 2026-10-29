@@ -18,6 +18,7 @@ import {
   Plane,
   X,
 } from "lucide-react";
+import { SiWhatsapp } from "react-icons/si";
 
 export const CONTACT_EMAIL = "info@karibuandbeyondltd.com";
 export const PHONE_ONE = "+254 729 861 607";
@@ -49,6 +50,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [location] = useLocation();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const isHome = (location.split("?")[0].replace(/\/+$/, "") || "/") === "/";
 
   useEffect(() => setOpen(false), [location]);
 
@@ -64,7 +66,7 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="site-header">
+    <header className={`site-header${isHome ? " site-header-home" : ""}`}>
       <div className="topline">
         <div className="container-wide topline-inner">
           <span>Kenya · East Africa · India</span>
@@ -406,6 +408,80 @@ export function ContactDetails() {
   );
 }
 
+function WhatsAppContact() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
+
+  const contacts = [
+    { number: WHATSAPP_NUMBER, display: PHONE_ONE, primary: true },
+    { number: "254711556151", display: PHONE_TWO, primary: false },
+  ];
+
+  return (
+    <>
+      <section
+        className="whatsapp-panel"
+        id="whatsapp-contact"
+        aria-label="WhatsApp contact options"
+        hidden={!open}
+      >
+          <div className="whatsapp-panel-header">
+            <SiWhatsapp size={20} aria-hidden="true" />
+            <strong>WhatsApp</strong>
+            <button
+              type="button"
+              className="whatsapp-panel-close"
+              aria-label="Close WhatsApp contact options"
+              onClick={() => setOpen(false)}
+            >
+              <X size={19} aria-hidden="true" />
+            </button>
+          </div>
+          <p>Choose a number to start a conversation on WhatsApp.</p>
+          <div className="whatsapp-number-list">
+            {contacts.map(({ number, display, primary }) => (
+              <a
+                className="whatsapp-number"
+                href={`https://wa.me/${number}?text=${encodeURIComponent("Hello Karibu and Beyond, I would like to make an enquiry.")}`}
+                key={number}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className={`whatsapp-number-icon${primary ? " is-primary" : ""}`}>
+                  <Phone size={17} aria-hidden="true" />
+                </span>
+                <span className="whatsapp-number-copy">
+                  <strong>{display}</strong>
+                  {primary && <small>Primary line</small>}
+                </span>
+                <ArrowRight size={16} aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+      </section>
+      <button
+        className={`whatsapp-float${open ? " whatsapp-float-open" : ""}`}
+        type="button"
+        aria-label={open ? "Close WhatsApp contact options" : "Open WhatsApp contact options"}
+        aria-expanded={open}
+        aria-controls="whatsapp-contact"
+        onClick={() => setOpen((value) => !value)}
+      >
+        {open ? <X size={25} aria-hidden="true" /> : <SiWhatsapp size={26} aria-hidden="true" />}
+        {!open && <span className="whatsapp-float-dot" aria-hidden="true" />}
+      </button>
+    </>
+  );
+}
+
 export function ServiceIcon({ name }: { name: string }) {
   const iconProps = { size: 25, strokeWidth: 1.5, "aria-hidden": true as const };
   if (name === "plane") return <Plane {...iconProps} />;
@@ -445,15 +521,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <Header />
       <main id="main-content">{children}</main>
       <Footer />
-      <a
-        className="whatsapp-float"
-        href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello Karibu and Beyond, I would like to make an enquiry.")}`}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Open WhatsApp to contact Karibu and Beyond"
-      >
-        <MessageCircle size={21} aria-hidden="true" />
-      </a>
+      <WhatsAppContact />
     </>
   );
 }
