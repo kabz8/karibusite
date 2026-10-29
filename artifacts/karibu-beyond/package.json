@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --config vite.config.ts --host 0.0.0.0",
-    "build": "vite build --config vite.config.ts",
+    "build": "vite build --config vite.config.ts && node ./scripts/prerender-meta.mjs && node ./scripts/check-static.mjs",
+    "test": "node ./scripts/check-static.mjs",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
@@ -43,12 +44,10 @@
     "@replit/vite-plugin-runtime-error-modal": "catalog:",
     "@tailwindcss/typography": "^0.5.15",
     "@tailwindcss/vite": "catalog:",
-    "@tanstack/react-query": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "catalog:",
-    "@workspace/api-client-react": "workspace:*",
     "class-variance-authority": "catalog:",
     "clsx": "catalog:",
     "cmdk": "^1.1.1",
@@ -73,9 +72,5 @@
     "vite": "catalog:",
     "wouter": "^3.3.5",
     "zod": "catalog:"
-  },
-  "dependencies": {
-    "@clerk/react": "^6.18.2",
-    "@clerk/themes": "^2.4.57"
   }
 }
