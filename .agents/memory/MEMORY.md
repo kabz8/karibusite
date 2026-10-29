@@ -1,0 +1,1 @@
+- [Karibu website scope](karibu-site-scope.md) — keep the public site frontend-only and Vercel-static; no app backend or admin unless the user changes scope.
