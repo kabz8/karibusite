@@ -392,6 +392,13 @@ export const sitePages: Record<string, SitePage> = {
       "Thoughtful coordination for faith-led travel and group journeys.",
     paragraphs: [
       "We listen to the purpose, timing and needs of your group, then discuss an itinerary and practical arrangements. Dates, inclusions, prices and availability are confirmed directly.",
+      "Planning conversations can cover group size, departure points, transport and accommodation enquiries. Specific arrangements are agreed before anything is booked.",
+    ],
+    bullets: [
+      "Personal, family, group and organisational enquiries",
+      "Itinerary discussions shaped around purpose and timing",
+      "Practical coordination around transport and accommodation",
+      "Clear confirmation of details before arrangements proceed",
     ],
     service: "pilgrimage",
     links: [
@@ -466,6 +473,12 @@ export const sitePages: Record<string, SitePage> = {
     paragraphs: [
       "Tell us about the context, challenge and outcome you are working towards. We will discuss whether and how our consultancy support may be relevant.",
       "Specific disciplines, credentials and engagements are not listed until confirmed. Please do not send confidential or sensitive material through this website.",
+    ],
+    bullets: [
+      "Clarify the context and question behind your enquiry",
+      "Discuss the outcome you are working towards",
+      "Explore whether consultancy support may be relevant",
+      "Agree practical next steps without assuming an engagement",
     ],
     service: "consultancy",
     links: [{ label: "Request a consultation", href: "/consultation/request" }],
