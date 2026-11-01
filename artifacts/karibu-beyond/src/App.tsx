@@ -80,7 +80,7 @@ function MetaManager() {
       url: SITE_ORIGIN,
       logo: `${SITE_ORIGIN}/karibu-logo.png`,
       email: "info@karibuandbeyondltd.com",
-      telephone: ["+254 729 861 607", "+254 711 556 151"],
+      telephone: ["+254 729 861 607", "+1 (732) 874-1372"],
       areaServed: ["East Africa", "India"],
     });
   }, [location]);

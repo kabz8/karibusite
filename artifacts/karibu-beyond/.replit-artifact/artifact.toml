@@ -1,7 +1,7 @@
 kind = "web"
 previewPath = "/"
 title = "Karibu and Beyond"
-description = "A static, frontend-only website for Karibu and Beyond Ltd, with five service divisions, enquiry links and Vercel deployment support."
+description = "A frontend-only website for Karibu and Beyond Ltd, introducing its travel, events, medical tourism, pilgrimage and consultancy services with direct contact options."
 version = "1.0.0"
 id = "artifacts/karibu-beyond"
 router = "path"

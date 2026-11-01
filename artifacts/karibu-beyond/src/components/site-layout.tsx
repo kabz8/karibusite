@@ -18,11 +18,18 @@ import {
   Plane,
   X,
 } from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
+import {
+  SiInstagram,
+  SiTiktok,
+  SiWhatsapp,
+} from "react-icons/si";
+import { FaLinkedinIn } from "react-icons/fa6";
 
 export const CONTACT_EMAIL = "info@karibuandbeyondltd.com";
 export const PHONE_ONE = "+254 729 861 607";
-export const PHONE_TWO = "+254 711 556 151";
+export const PHONE_TWO = "+1 (732) 874-1372";
+export const PHONE_ONE_TEL = "+254729861607";
+export const PHONE_TWO_TEL = "+17328741372";
 export const WHATSAPP_NUMBER = "254729861607";
 const LOGO = `${import.meta.env.BASE_URL}karibu-logo.png`;
 
@@ -73,7 +80,7 @@ export function Header() {
           <div className="topline-contact">
             <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
             <span aria-hidden="true">/</span>
-            <a href="tel:+254729861607">{PHONE_ONE}</a>
+            <a href={`tel:${PHONE_ONE_TEL}`}>{PHONE_ONE}</a>
           </div>
         </div>
       </div>
@@ -159,10 +166,10 @@ export function Footer() {
           <a href={`mailto:${CONTACT_EMAIL}`}>
             <Mail size={15} aria-hidden="true" /> {CONTACT_EMAIL}
           </a>
-          <a href="tel:+254729861607">
+          <a href={`tel:${PHONE_ONE_TEL}`}>
             <Phone size={15} aria-hidden="true" /> {PHONE_ONE}
           </a>
-          <a href="tel:+254711556151">
+          <a href={`tel:${PHONE_TWO_TEL}`}>
             <Phone size={15} aria-hidden="true" /> {PHONE_TWO}
           </a>
           <span><MapPin size={15} aria-hidden="true" /> Embakasi, North Airport Road, Kenya</span>
@@ -173,6 +180,35 @@ export function Footer() {
           >
             <MessageCircle size={15} aria-hidden="true" /> Message us on WhatsApp
           </a>
+          <div className="footer-social-links" aria-label="Social media profiles">
+            <a
+              href="https://www.instagram.com/karibuandbeyondlimited?psln=MTh2dXQ1OTFxcjNkYg%3D%3D&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram (opens in a new tab)"
+            >
+              <SiInstagram size={17} aria-hidden="true" />
+              <span>Instagram</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/karibu-and-beyond-limited-5a70b1448?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn (opens in a new tab)"
+            >
+              <FaLinkedinIn size={17} aria-hidden="true" />
+              <span>LinkedIn</span>
+            </a>
+            <a
+              href="https://www.tiktok.com/@karibubeyondlimitedke?_r=1&_t=ZS-9AzFajLWnjk"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok (opens in a new tab)"
+            >
+              <SiTiktok size={17} aria-hidden="true" />
+              <span>TikTok</span>
+            </a>
+          </div>
         </div>
       </div>
       <div className="container-wide footer-bottom">
@@ -392,13 +428,13 @@ export function ContactDetails() {
         <span className="contact-icon"><Mail size={18} aria-hidden="true" /></span>
         <span><small>Email</small><strong>{CONTACT_EMAIL}</strong></span>
       </a>
-      <a href="tel:+254729861607">
+      <a href={`tel:${PHONE_ONE_TEL}`}>
         <span className="contact-icon"><Phone size={18} aria-hidden="true" /></span>
         <span><small>Call</small><strong>{PHONE_ONE}</strong></span>
       </a>
-      <a href="tel:+254711556151">
+      <a href={`tel:${PHONE_TWO_TEL}`}>
         <span className="contact-icon"><Phone size={18} aria-hidden="true" /></span>
-        <span><small>Also available</small><strong>{PHONE_TWO}</strong></span>
+        <span><small>United States</small><strong>{PHONE_TWO}</strong></span>
       </a>
       <div>
         <span className="contact-icon"><MapPin size={18} aria-hidden="true" /></span>
@@ -420,10 +456,7 @@ function WhatsAppContact() {
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, [open]);
 
-  const contacts = [
-    { number: WHATSAPP_NUMBER, display: PHONE_ONE, primary: true },
-    { number: "254711556151", display: PHONE_TWO, primary: false },
-  ];
+  const contacts = [{ number: WHATSAPP_NUMBER, display: PHONE_ONE, primary: true }];
 
   return (
     <>
