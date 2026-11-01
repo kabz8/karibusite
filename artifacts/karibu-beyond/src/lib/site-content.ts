@@ -231,14 +231,16 @@ export const sitePages: Record<string, SitePage> = {
     intro:
       "Clear planning and calm coordination for events with something to say.",
     paragraphs: [
-      "We discuss event coordination for conferences, summits, weddings, product launches and corporate gatherings. Tell us the occasion, proposed timing and what matters most.",
+      "We discuss event coordination for exhibitions, team-building activities, corporate events, conferences, summits, weddings and product launches. Tell us the occasion, proposed timing and what matters most.",
       "Event production, suppliers, venue arrangements and technical capabilities are confirmed for each brief.",
     ],
     bullets: [
+      "Exhibitions",
+      "Team-building activities",
+      "Corporate events",
       "Conferences and summits",
       "Weddings and celebrations",
       "Product launches",
-      "Corporate gatherings",
       "Event logistics and coordination",
     ],
     service: "events",
@@ -257,7 +259,7 @@ export const sitePages: Record<string, SitePage> = {
     intro:
       "From the first brief to the final run of show, discuss the moving parts with one team.",
     paragraphs: [
-      "Explore corporate event, conference, wedding and product launch enquiries. Proposals are shaped around the brief and confirmed requirements.",
+      "Explore exhibition, team-building, corporate event, conference, wedding and product launch enquiries. Proposals are shaped around the brief and confirmed requirements.",
     ],
     service: "events",
     links: [
@@ -274,7 +276,7 @@ export const sitePages: Record<string, SitePage> = {
     intro:
       "Corporate gatherings shaped around people, purpose and practicalities.",
     paragraphs: [
-      "We can discuss meetings, launches, client gatherings and internal occasions. Share an outline, proposed timing and what you hope to achieve.",
+      "We can discuss corporate events, exhibitions, team-building activities, meetings, launches, client gatherings and internal occasions. Share an outline, proposed timing and what you hope to achieve.",
     ],
     service: "events",
   },

@@ -74,17 +74,17 @@ export const PAGE_META = {
   "/services/events-management": {
     title: "Events management | Karibu and Beyond Ltd",
     description:
-      "Discuss event coordination for conferences, summits, weddings, product launches and corporate gatherings.",
+      "Discuss exhibitions, team-building activities, corporate events, conferences, weddings and product launches.",
   },
   "/events": {
     title: "Events | Karibu and Beyond Ltd",
     description:
-      "Explore event enquiry options for corporate gatherings, conferences, weddings and product launches.",
+      "Explore event enquiries for exhibitions, team-building activities, corporate events, conferences and product launches.",
   },
   "/events/corporate": {
     title: "Corporate events | Karibu and Beyond Ltd",
     description:
-      "Start a conversation about a corporate event, meeting, launch or client gathering.",
+      "Start a conversation about corporate events, exhibitions, team-building activities, meetings or launches.",
   },
   "/events/conferences": {
     title: "Conference enquiries | Karibu and Beyond Ltd",
