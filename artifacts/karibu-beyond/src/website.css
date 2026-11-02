@@ -153,17 +153,6 @@ textarea:focus-visible, summary:focus-visible {
 .step h3 { margin: 17px 0 8px; color: var(--ink); font-size: 22px; line-height: 1.2; }
 .step p { max-width: 250px; margin: 0; color: var(--body); font-size: 12px; line-height: 1.75; }
 
-.package-preview { padding: 84px 0; background: #fbf8ef; }
-.package-preview-inner { display: grid; grid-template-columns: .8fr 1.2fr; align-items: center; gap: clamp(36px, 8vw, 110px); }
-.package-art { position: relative; display: grid; min-height: 310px; place-items: center; overflow: hidden; background: var(--forest); color: #dfc65f; }
-.package-art::before, .package-art::after { position: absolute; width: 230px; height: 230px; border: 1px solid #e5ce6c4a; border-radius: 50%; content: ""; }
-.package-art::after { width: 155px; height: 155px; }
-.package-art svg { position: relative; z-index: 1; }
-.package-art span { position: absolute; bottom: 23px; color: #e9d67e; font-size: 9px; letter-spacing: .18em; }
-.package-preview-copy h2 { margin: 13px 0 15px; color: var(--ink); font-size: clamp(34px, 4vw, 48px); line-height: 1.08; letter-spacing: -.03em; }
-.package-preview-copy > p { max-width: 560px; color: var(--body); font-size: 13px; line-height: 1.85; }
-.inline-links { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 22px; }
-
 .reach-section { display: grid; min-height: 460px; grid-template-columns: 1fr 1fr; background: var(--forest); color: #fffaf0; }
 .reach-image { position: relative; min-height: 400px; overflow: hidden; }
 .reach-image::after { position: absolute; inset: 0; background: linear-gradient(0deg, #062d17a8, transparent 60%); content: ""; }
@@ -233,6 +222,42 @@ textarea:focus-visible, summary:focus-visible {
 .page-intro { max-width: 690px; margin: 0; color: var(--body); font-size: 15px; line-height: 1.8; }
 .page-hero-orbit { position: absolute; top: 83px; right: max(4vw, calc((100vw - 1300px) / 2)); width: 245px; height: 245px; border: 1px solid #aa934f3c; border-radius: 50%; }
 .page-hero-orbit::after { position: absolute; inset: 28px; border: 1px solid #aa934f2b; border-radius: 50%; content: ""; }
+.about-page { overflow: hidden; }
+.about-page .serif { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+.about-hero {
+  position: relative; display: flex; min-height: min(530px, 72svh); align-items: center; overflow: hidden;
+  background: linear-gradient(90deg, #12150fe8 0%, #12150fc4 52%, #12150f42 100%), url("/service-consultancy-meeting.jpg") center 46% / cover no-repeat;
+  color: #fbf8ef;
+}
+.about-hero-content { position: relative; z-index: 1; padding-top: 108px; padding-bottom: 60px; }
+.about-hero h1 { max-width: 820px; margin: 18px 0 15px; color: #fbf8ef; font-size: clamp(40px, 5.7vw, 72px); line-height: 1.08; letter-spacing: -.035em; }
+.about-hero p { max-width: 650px; margin: 0; color: #e3e1d8; font-size: 15px; line-height: 1.75; }
+.about-story { padding: 78px 0 84px; background: var(--cream); }
+.about-story-grid { display: grid; grid-template-columns: .82fr 1.18fr; align-items: start; gap: clamp(42px, 8vw, 110px); }
+.about-story-heading h2 { max-width: 450px; margin: 17px 0 25px; color: #29251d; font-size: clamp(34px, 4.2vw, 49px); line-height: 1.13; }
+.about-rule { display: block; width: 42px; height: 1px; background: #b9a34e; }
+.about-story-copy p { margin: 0 0 18px; color: #5c5b54; font-size: 14px; line-height: 1.9; }
+.about-story-copy p:last-child { margin-bottom: 0; }
+.about-beliefs { padding: 74px 0 78px; background: #f5f1e6; }
+.about-belief-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.about-belief { min-height: 204px; padding: 27px 30px 30px; border: 1px solid #e7e1d4; background: #fffefa; }
+.about-belief-vision { border-top: 1px solid #b9a34e; }
+.about-belief-mission { border-top: 1px solid #34451f; }
+.about-belief h2 { max-width: 520px; margin: 17px 0 0; color: #29251d; font-size: clamp(20px, 2.1vw, 27px); line-height: 1.38; }
+.about-care { padding: 78px 0 90px; background: #fbf8ef; }
+.about-care-heading { display: grid; justify-items: center; gap: 14px; margin-bottom: 42px; text-align: center; }
+.about-care-heading h2 { margin: 0; color: #29251d; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.2; }
+.about-care-heading h2 em { color: #b9a34e; font-style: italic; }
+.about-care-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.about-care-card { display: flex; min-height: 216px; flex-direction: column; align-items: center; justify-content: center; padding: 22px 19px; border: 1px solid #e8e3d9; background: #fffefa; text-align: center; }
+.about-care-initial { color: #c4a848; font-family: Georgia, "Times New Roman", serif; font-size: 58px; line-height: 1; }
+.about-care-card h3 { margin: 10px 0 8px; color: #29251d; font-size: 17px; font-weight: 500; }
+.about-care-rule { width: 26px; height: 1px; background: #b9a34e; }
+.about-care-card p { max-width: 250px; margin: 11px 0 0; color: #77746d; font-size: 11px; line-height: 1.6; }
+.about-page .final-callout { background: #34451f; }
+.about-page .final-callout h2 { color: #fbf8ef; }
+.about-page .final-callout p { color: #d6d8c8; }
+.about-page .final-callout .eyebrow { color: #f5db81; }
 .body-section { padding: 72px 0 84px; }
 .service-image-gallery { padding: 20px 0 0; background: var(--cream); }
 .service-image-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 14px; }
@@ -396,6 +421,8 @@ textarea:focus-visible, summary:focus-visible {
 .pilgrimage-faq-closing .pilgrimage-closing-inner { max-width: 1200px; }
 
 @media (max-width: 820px) {
+  .about-story-grid { grid-template-columns: 1fr; gap: 26px; }
+  .about-care-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pilgrimage-overview { padding: 62px 0 70px; }
   .pilgrimage-overview-inner, .pilgrimage-faq-inner { grid-template-columns: 1fr; gap: 34px; }
   .pilgrimage-overview-copy { padding-top: 0; }
@@ -413,6 +440,26 @@ textarea:focus-visible, summary:focus-visible {
   .service-image { min-height: 260px; }
 }
 @media (max-width: 560px) {
+  .about-hero { min-height: 350px; align-items: flex-end; background-position: 58% center; }
+  .about-hero-content { padding-top: 112px; padding-bottom: 38px; }
+  .about-hero h1 { margin: 15px 0 12px; font-size: clamp(34px, 9vw, 42px); line-height: 1.1; }
+  .about-hero p { font-size: 13px; line-height: 1.65; }
+  .about-story { padding: 54px 0 58px; }
+  .about-story-grid { gap: 22px; }
+  .about-story-heading h2 { margin: 12px 0 18px; font-size: 33px; }
+  .about-story-copy p { margin-bottom: 15px; font-size: 12px; line-height: 1.8; }
+  .about-beliefs { padding: 46px 0 52px; }
+  .about-belief-grid { gap: 14px; }
+  .about-belief { min-height: 0; padding: 18px 15px 20px; }
+  .about-belief h2 { margin-top: 12px; font-size: 17px; line-height: 1.35; }
+  .about-care { padding: 54px 0 62px; }
+  .about-care-heading { gap: 11px; margin-bottom: 28px; }
+  .about-care-heading h2 { font-size: 27px; }
+  .about-care-grid { gap: 12px; }
+  .about-care-card { min-height: 142px; padding: 15px 10px; }
+  .about-care-initial { font-size: 45px; }
+  .about-care-card h3 { margin: 6px 0; font-size: 14px; }
+  .about-care-card p { margin-top: 8px; font-size: 9px; line-height: 1.5; }
   .pilgrimage-overview { padding: 57px 0 45px; }
   .pilgrimage-overview-inner { gap: 65px; }
   .pilgrimage-photo-strip { padding-bottom: 52px; }
@@ -548,11 +595,6 @@ textarea:focus-visible, summary:focus-visible {
   .step, .step + .step { min-height: auto; padding: 21px 0; border-left: 0; border-bottom: 1px solid #d8d0bd; }
   .step:first-child { padding-top: 21px; }
   .step h3 { margin-top: 10px; }
-  .package-preview { padding: 60px 0; }
-  .package-preview-inner { grid-template-columns: 1fr; gap: 24px; }
-  .package-art { min-height: 215px; }
-  .package-preview-copy h2 { font-size: 36px; }
-  .inline-links { flex-direction: column; align-items: flex-start; gap: 13px; }
   .reach-copy { padding: 45px 20px 50px; }
   .reach-copy h2 { font-size: 39px; }
   .principles-section { padding: 65px 0; }

@@ -4,6 +4,33 @@
   "outputDirectory": "dist/public",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/experiences",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/packages",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/packages/:path*",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/insights",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/insights/:path*",
+      "destination": "/services",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

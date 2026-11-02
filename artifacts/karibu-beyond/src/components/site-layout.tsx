@@ -59,6 +59,7 @@ export function Header() {
   const [location] = useLocation();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const isHome = (location.split("?")[0].replace(/\/+$/, "") || "/") === "/";
+  const isAbout = (location.split("?")[0].replace(/\/+$/, "") || "/") === "/about";
 
   useEffect(() => setOpen(false), [location]);
 
@@ -74,7 +75,7 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className={`site-header${isHome ? " site-header-home" : ""}`}>
+    <header className={`site-header${isHome || isAbout ? " site-header-home" : ""}`}>
       <div className="topline">
         <div className="container-wide topline-inner">
           <span>Kenya · East Africa · India</span>
@@ -116,9 +117,6 @@ export function Header() {
               ))}
             </div>
           </details>
-          <Link href="/packages" onClick={() => setOpen(false)}>Packages</Link>
-          <Link href="/experiences" onClick={() => setOpen(false)}>Experiences</Link>
-          <Link href="/insights" onClick={() => setOpen(false)}>Insights</Link>
           <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
           <Link
             className="button button-gold nav-mobile-cta"
@@ -151,9 +149,6 @@ export function Footer() {
           <h2>Explore</h2>
           <Link href="/about">Our story</Link>
           <Link href="/services">Services</Link>
-          <Link href="/packages">Packages</Link>
-          <Link href="/experiences">Experiences</Link>
-          <Link href="/insights">Insights</Link>
           <Link href="/faq">Frequently asked questions</Link>
         </div>
         <div className="footer-links">

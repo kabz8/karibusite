@@ -1,16 +1,13 @@
 import { useEffect, useLayoutEffect, useState } from "react";
-import { Link, Route, Router, Switch, useLocation, useParams } from "wouter";
+import { Link, Redirect, Route, Router, Switch, useLocation, useParams } from "wouter";
 import {
   ArrowRight,
   ArrowUpRight,
-  CalendarDays,
   Check,
   ChevronDown,
-  Compass,
   Globe2,
   HeartHandshake,
   MoveUpRight,
-  Plane,
   ShieldCheck,
 } from "lucide-react";
 import {
@@ -22,7 +19,7 @@ import {
   SiteShell,
   CONTACT_EMAIL,
 } from "@/components/site-layout";
-import { divisions, faqItems, sitePages, type SitePage } from "@/lib/site-content";
+import { aboutContent, divisions, faqItems, sitePages, type SitePage } from "@/lib/site-content";
 import { PAGE_META, SITE_ORIGIN } from "@/lib/page-meta.mjs";
 import "./website.css";
 
@@ -315,28 +312,6 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="package-preview">
-        <div className="container-wide package-preview-inner">
-          <div className="package-art" aria-hidden="true">
-            <Compass size={68} strokeWidth={1} />
-            <span>MADE FOR YOUR BRIEF</span>
-          </div>
-          <div className="package-preview-copy">
-            <span className="eyebrow">Packages & experiences</span>
-            <h2 className="serif">No guesswork. Just a considered conversation.</h2>
-            <p>
-              There are no confirmed package offers or prices published here
-              yet. Tell us what you have in mind and we can discuss a tailored
-              enquiry without assuming inclusions or availability.
-            </p>
-            <div className="inline-links">
-              <Link className="text-link" href="/packages">Browse packages <ArrowUpRight size={15} /></Link>
-              <Link className="text-link" href="/experiences">Explore experiences <ArrowUpRight size={15} /></Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="reach-section">
         <div className="reach-image">
           <img src={imagePath("mara-dawn.jpg")} alt="" loading="lazy" />
@@ -467,6 +442,75 @@ function ContentPage({ page }: { page: SitePage }) {
   );
 }
 
+function AboutPage() {
+  return (
+    <div className="about-page">
+      <section className="about-hero" aria-labelledby="about-title">
+        <div className="container-wide about-hero-content">
+          <span className="eyebrow eyebrow-gold">{aboutContent.eyebrow}</span>
+          <h1 className="serif" id="about-title">{aboutContent.title}</h1>
+          <p>{aboutContent.intro}</p>
+        </div>
+      </section>
+
+      <section className="about-story" aria-labelledby="about-story-title">
+        <div className="container-wide about-story-grid">
+          <div className="about-story-heading">
+            <span className="eyebrow">Our story</span>
+            <h2 className="serif" id="about-story-title">{aboutContent.storyTitle}</h2>
+            <span className="about-rule" aria-hidden="true" />
+          </div>
+          <div className="about-story-copy">
+            {aboutContent.storyParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="about-beliefs" aria-label="Our vision and mission">
+        <div className="container-wide about-belief-grid">
+          <article className="about-belief about-belief-vision">
+            <span className="eyebrow">Vision</span>
+            <h2 className="serif">{aboutContent.vision}</h2>
+          </article>
+          <article className="about-belief about-belief-mission">
+            <span className="eyebrow">Mission</span>
+            <h2 className="serif">{aboutContent.mission}</h2>
+          </article>
+        </div>
+      </section>
+
+      <section className="about-care" aria-labelledby="about-care-title">
+        <div className="container-wide">
+          <div className="about-care-heading">
+            <span className="eyebrow">Our philosophy</span>
+            <h2 className="serif" id="about-care-title">
+              We <em>CARE</em> — it’s who we are.
+            </h2>
+            <span className="about-rule" aria-hidden="true" />
+          </div>
+          <div className="about-care-grid">
+            {aboutContent.careValues.map(({ initial, title, description }) => (
+              <article className="about-care-card" key={initial}>
+                <span className="about-care-initial" aria-hidden="true">{initial}</span>
+                <h3 className="serif">{title}</h3>
+                <span className="about-care-rule" aria-hidden="true" />
+                <p>{description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <FinalCallout
+        title="A standard of service that travels beyond expectation."
+        text="Tell us what you are planning and what matters most. We will discuss practical next steps and confirm the scope directly."
+      />
+    </div>
+  );
+}
+
 function ServiceImageGallery({ page }: { page: SitePage }) {
   if (!page.images?.length) return null;
 
@@ -491,6 +535,7 @@ function ServiceImageGallery({ page }: { page: SitePage }) {
 function ContentPageRouter() {
   const [location] = useLocation();
   const path = location.split("?")[0].replace(/\/+$/, "") || "/";
+  if (path === "/about") return <AboutPage />;
   if (path === "/services/pilgrimage-tourism" || path === "/pilgrimage") {
     return <PilgrimageLanding />;
   }
@@ -728,79 +773,6 @@ function PilgrimageFaq() {
   );
 }
 
-function EmptyListingPage({
-  eyebrow,
-  title,
-  intro,
-  note,
-  icon,
-}: {
-  eyebrow: string;
-  title: string;
-  intro: string;
-  note: string;
-  icon: React.ReactNode;
-}) {
-  return (
-    <>
-      <PageHero eyebrow={eyebrow} title={title} intro={intro} />
-      <section className="listing-section">
-        <div className="container-wide empty-listing">
-          <span className="empty-listing-icon">{icon}</span>
-          <div>
-            <span className="eyebrow">No listings published</span>
-            <h2 className="serif">{note}</h2>
-            <p>
-              We only publish information confirmed by the company. Contact us
-              to discuss your requirements without assuming prices, dates or inclusions.
-            </p>
-            <Link className="button button-forest" href="/consultation">
-              Ask about a tailored option <ArrowRight size={15} aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-      </section>
-      <FinalCallout />
-    </>
-  );
-}
-
-function PackagesPage() {
-  return (
-    <EmptyListingPage
-      eyebrow="Packages"
-      title="A clear view of what is available."
-      intro="Only confirmed package details belong here."
-      note="There are no confirmed package listings yet."
-      icon={<Compass size={28} strokeWidth={1.4} aria-hidden="true" />}
-    />
-  );
-}
-
-function ExperiencesPage() {
-  return (
-    <EmptyListingPage
-      eyebrow="Experiences"
-      title="A starting point for the journey ahead."
-      intro="Explore the service areas before choosing a next step."
-      note="Experience programmes will appear when details are confirmed."
-      icon={<Plane size={28} strokeWidth={1.4} aria-hidden="true" />}
-    />
-  );
-}
-
-function InsightsPage() {
-  return (
-    <EmptyListingPage
-      eyebrow="Insights"
-      title="Notes for a world in motion."
-      intro="Company articles and planning notes will appear here when published."
-      note="There are no articles published yet."
-      icon={<CalendarDays size={28} strokeWidth={1.4} aria-hidden="true" />}
-    />
-  );
-}
-
 function FrequentlyAskedQuestions() {
   const page = sitePages["/faq"];
   return (
@@ -827,33 +799,6 @@ function DestinationPage() {
   return page ? <ContentPage page={page} /> : <NotFound />;
 }
 
-function UnpublishedDetail({ kind }: { kind: "package" | "article" }) {
-  const { slug } = useParams<{ slug: string }>();
-  const isPackage = kind === "package";
-  const label = isPackage ? "Package" : "Article";
-  return (
-    <>
-      <PageHero
-        eyebrow={label}
-        title={isPackage ? "This package is not published." : "This article is not available."}
-        intro={isPackage
-          ? "Only confirmed package information is shown on this website."
-          : "Only published company insights are available on this website."}
-      />
-      <section className="body-section">
-        <div className="container-narrow not-published">
-          <span className="eyebrow">No public listing</span>
-          <p>
-            {slug ? `“${slug.replaceAll("-", " ")}” is not currently published.` : "This item is not currently published."}
-            {" "}Contact the team if you would like to discuss a related enquiry.
-          </p>
-          <Link className="button button-forest" href="/contact">Contact us <ArrowRight size={15} /></Link>
-        </div>
-      </section>
-    </>
-  );
-}
-
 function NotFound() {
   return (
     <section className="not-found">
@@ -873,12 +818,12 @@ function AppRoutes() {
       <SiteShell>
         <Switch>
           <Route path="/" component={HomePage} />
-          <Route path="/packages/:slug" component={() => <UnpublishedDetail kind="package" />} />
-          <Route path="/insights/:slug" component={() => <UnpublishedDetail kind="article" />} />
+          <Route path="/packages/:slug" component={() => <Redirect to="/services" replace />} />
+          <Route path="/insights/:slug" component={() => <Redirect to="/services" replace />} />
           <Route path="/travel/destinations/:slug" component={DestinationPage} />
-          <Route path="/packages" component={PackagesPage} />
-          <Route path="/experiences" component={ExperiencesPage} />
-          <Route path="/insights" component={InsightsPage} />
+          <Route path="/packages" component={() => <Redirect to="/services" replace />} />
+          <Route path="/experiences" component={() => <Redirect to="/services" replace />} />
+          <Route path="/insights" component={() => <Redirect to="/services" replace />} />
           <Route path="/faq" component={FrequentlyAskedQuestions} />
           <Route component={ContentPageRouter} />
         </Switch>

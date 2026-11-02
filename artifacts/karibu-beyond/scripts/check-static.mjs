@@ -34,5 +34,28 @@ for (const [route, metadata] of Object.entries(PAGE_META)) {
 const sitemap = readFileSync(path.join(outputDir, "sitemap.xml"), "utf8");
 assert.ok(sitemap.includes("https://karibuandbeyondltd.com/"), "official homepage is missing from sitemap");
 assert.ok(sitemap.includes("https://karibuandbeyondltd.com/services/medical-tourism"), "service routes are missing from sitemap");
+const removedListingPages = ["/experiences", "/packages", "/insights"];
+for (const route of removedListingPages) {
+  assert.ok(!sitemap.includes(`https://karibuandbeyondltd.com${route}`), `${route} remains in sitemap`);
+  assert.ok(!existsSync(path.join(outputDir, `${route.slice(1)}.html`)), `${route} is still being generated`);
+}
+
+const rootVercelConfig = JSON.parse(readFileSync(path.resolve(scriptDir, "../../../vercel.json"), "utf8"));
+for (const route of removedListingPages) {
+  assert.ok(
+    rootVercelConfig.redirects?.some(
+      (redirect) => redirect.source === route && redirect.destination === "/services" && redirect.permanent,
+    ),
+    `old ${route} links must redirect to the full services page on Vercel`,
+  );
+}
+for (const route of ["/packages/:path*", "/insights/:path*"]) {
+  assert.ok(
+    rootVercelConfig.redirects?.some(
+      (redirect) => redirect.source === route && redirect.destination === "/services" && redirect.permanent,
+    ),
+    `old ${route} links must redirect to the full services page on Vercel`,
+  );
+}
 
 console.log(`Static site smoke test passed for ${Object.keys(PAGE_META).length} routes.`);

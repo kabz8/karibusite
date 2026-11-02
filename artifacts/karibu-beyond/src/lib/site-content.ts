@@ -57,28 +57,46 @@ export const divisions = [
   },
 ];
 
+export const aboutContent = {
+  eyebrow: "About us",
+  title: "A diversified service company, built on a single standard.",
+  intro:
+    "We exist to deliver work of consequence — the kind of service experience that becomes the reason a client returns, year after year, brief after brief.",
+  storyTitle: "Founded on a simple conviction.",
+  storyParagraphs: [
+    "Karibu and Beyond Ltd was founded on the conviction that service — done well — is one of the most undervalued forms of craftsmanship. Travel, events, consultancy and medical journeys are deeply personal undertakings, and our clients deserve partners who treat them that way.",
+    "From a focused travel practice, we have grown into a diversified service company spanning various divisions — each led by sector specialists and held together by a shared culture of discretion, rigour and care.",
+    "The name “Karibu” — welcome — sits at the centre of what we do. We welcome every brief, every traveller, every client, with the same intent: to extend a standard of service that travels beyond expectation.",
+  ],
+  vision:
+    "To be East Africa’s most trusted diversified service company, recognised globally for the quality of our work.",
+  mission:
+    "To deliver considered, expertly executed service experiences across travel, events, consultancy and medical journeys — for clients who expect more.",
+  careValues: [
+    {
+      initial: "C",
+      title: "Connect",
+      description: "Engage with customers in a proactive way.",
+    },
+    {
+      initial: "A",
+      title: "Answer",
+      description: "Respond to customers with solutions that work.",
+    },
+    {
+      initial: "R",
+      title: "Represent",
+      description: "Fully encompass the brand in a professional manner.",
+    },
+    {
+      initial: "E",
+      title: "Exceed",
+      description: "Create amazing experiences.",
+    },
+  ],
+} as const;
+
 export const sitePages: Record<string, SitePage> = {
-  "/about": {
-    eyebrow: "About Karibu and Beyond",
-    title: "A thoughtful welcome to what comes next.",
-    intro:
-      "Karibu means welcome. We bring that spirit to the details that make a journey, an event or an important decision feel well considered.",
-    paragraphs: [
-      "Karibu and Beyond Ltd is a Kenya-based service company coordinating premium travel, events, medical tourism, pilgrimage and consultancy enquiries for individuals, corporations and institutions.",
-      "Our work starts with listening. We bring the moving parts into one clear conversation, then discuss practical options around your brief. Specific arrangements, suppliers, availability and costs are confirmed directly before anything is booked.",
-    ],
-    bullets: [
-      "Tours, travel and transfers",
-      "Events management",
-      "Medical tourism coordination",
-      "Pilgrimage tourism",
-      "Consultancy",
-    ],
-    links: [
-      { label: "Explore our services", href: "/services" },
-      { label: "How we work", href: "/why-choose-us" },
-    ],
-  },
   "/why-choose-us": {
     eyebrow: "The way we work",
     title: "Considered for a global world.",

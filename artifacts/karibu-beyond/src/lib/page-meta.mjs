@@ -7,9 +7,9 @@ export const PAGE_META = {
       "Thoughtful coordination for travel, events, medical tourism, pilgrimage and consultancy. Based in Kenya, with East Africa and India in focus.",
   },
   "/about": {
-    title: "About | Karibu and Beyond Ltd",
+    title: "About us | Karibu and Beyond Ltd",
     description:
-      "Meet Karibu and Beyond Ltd, a Kenya-based service company bringing travel, events, medical tourism, pilgrimage and consultancy together.",
+      "Discover the story, vision, mission and CARE philosophy behind Karibu and Beyond Ltd.",
   },
   "/why-choose-us": {
     title: "Our approach | Karibu and Beyond Ltd",
@@ -190,21 +190,6 @@ export const PAGE_META = {
     title: "Consultancy enquiry | Karibu and Beyond Ltd",
     description:
       "Share a concise consultancy brief. Do not include confidential or sensitive information.",
-  },
-  "/packages": {
-    title: "Packages | Karibu and Beyond Ltd",
-    description:
-      "Browse confirmed service packages from Karibu and Beyond. Contact the team about tailored requirements.",
-  },
-  "/experiences": {
-    title: "Experiences | Karibu and Beyond Ltd",
-    description:
-      "Explore service areas and discuss a tailored travel, events or coordination enquiry.",
-  },
-  "/insights": {
-    title: "Insights | Karibu and Beyond Ltd",
-    description:
-      "Read company insights and planning notes from Karibu and Beyond when new articles are available.",
   },
   "/faq": {
     title: "Frequently asked questions | Karibu and Beyond Ltd",
