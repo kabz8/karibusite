@@ -120,13 +120,16 @@ textarea:focus-visible, summary:focus-visible {
 .section-heading p { max-width: 580px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
 .section-heading > .text-link { margin-bottom: 6px; }
 .service-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
-.service-card { position: relative; grid-column: span 2; display: flex; min-height: 266px; flex-direction: column; padding: 25px 24px 22px; border: 1px solid var(--line); background: var(--surface); transition: border-color .2s ease, transform .2s ease, background .2s ease; }
+.service-card { position: relative; grid-column: span 2; display: flex; min-height: 360px; flex-direction: column; overflow: hidden; border: 1px solid var(--line); background: var(--surface); transition: border-color .2s ease, transform .2s ease, background .2s ease; }
 .service-card:nth-child(4) { grid-column: 2 / span 2; }
 .service-card:hover { transform: translateY(-4px); border-color: #c4aa5a; background: #fffefb; }
+.service-card-image { width: 100%; height: 165px; flex: none; object-fit: cover; transition: transform .35s ease; }
+.service-card:hover .service-card-image { transform: scale(1.035); }
+.service-card-body { display: flex; flex: 1; flex-direction: column; padding: 19px 23px 22px; }
 .service-icon { display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid #e6dfcc; color: var(--gold-deep); }
-.service-number { position: absolute; top: 26px; right: 23px; color: #a5a38f; font-size: 10px; letter-spacing: .12em; }
-.service-card h3 { margin: 22px 0 8px; color: var(--ink); font-size: 25px; line-height: 1.15; letter-spacing: -.02em; }
-.service-card p { max-width: 300px; margin: 0 0 22px; color: var(--body); font-size: 12px; line-height: 1.7; }
+.service-number { position: absolute; top: 14px; right: 14px; z-index: 1; padding: 7px 9px; background: #042f16d9; color: #fbdc81; font-size: 10px; letter-spacing: .12em; }
+.service-card h3 { margin: 17px 0 8px; color: var(--ink); font-size: 25px; line-height: 1.15; letter-spacing: -.02em; }
+.service-card p { max-width: 340px; margin: 0 0 22px; color: var(--body); font-size: 12px; line-height: 1.7; }
 .card-link { display: flex; align-items: center; gap: 8px; margin-top: auto; color: #31563a; font-size: 10px; font-weight: 700; }
 
 .approach-section { padding: 84px 0 92px; background: #f4f0e6; }
@@ -219,6 +222,13 @@ textarea:focus-visible, summary:focus-visible {
 .page-hero-orbit { position: absolute; top: 83px; right: max(4vw, calc((100vw - 1300px) / 2)); width: 245px; height: 245px; border: 1px solid #aa934f3c; border-radius: 50%; }
 .page-hero-orbit::after { position: absolute; inset: 28px; border: 1px solid #aa934f2b; border-radius: 50%; content: ""; }
 .body-section { padding: 72px 0 84px; }
+.service-image-gallery { padding: 20px 0 0; background: var(--cream); }
+.service-image-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 14px; }
+.service-image { position: relative; min-height: 310px; margin: 0; overflow: hidden; background: var(--forest); }
+.service-image::after { position: absolute; inset: 45% 0 0; background: linear-gradient(0deg, #041d10b8, transparent); content: ""; }
+.service-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+.service-image:hover img { transform: scale(1.025); }
+.service-image figcaption { position: absolute; z-index: 1; right: 18px; bottom: 16px; left: 18px; color: #fff9e8; font-size: 11px; letter-spacing: .04em; line-height: 1.5; }
 .content-layout { display: grid; grid-template-columns: minmax(0, 2fr) minmax(230px, .8fr); align-items: start; gap: clamp(42px, 8vw, 110px); }
 .content-copy { max-width: 740px; }
 .content-copy > p { margin: 0 0 20px; color: #3d5645; font-size: 16px; line-height: 1.95; }
@@ -305,6 +315,13 @@ textarea:focus-visible, summary:focus-visible {
 .pilgrimage-rule { display: block; width: 46px; height: 1px; background: #b9a34e; }
 .pilgrimage-overview-copy { padding-top: 59px; }
 .pilgrimage-overview-copy p { margin: 0 0 21px; color: #5c5b54; font-size: 16px; line-height: 1.9; }
+.pilgrimage-photo-strip { padding: 0 0 76px; background: #fbf8ef; }
+.pilgrimage-photo-grid { display: grid; grid-template-columns: 1.1fr .9fr .9fr; gap: 14px; }
+.pilgrimage-photo-grid figure { position: relative; min-height: 250px; margin: 0; overflow: hidden; background: #1e1b16; }
+.pilgrimage-photo-grid figure::after { position: absolute; inset: 45% 0 0; background: linear-gradient(0deg, #041d10b8, transparent); content: ""; }
+.pilgrimage-photo-grid img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+.pilgrimage-photo-grid figure:hover img { transform: scale(1.025); }
+.pilgrimage-photo-grid figcaption { position: absolute; z-index: 1; bottom: 15px; left: 17px; color: #fff9e8; font-size: 11px; letter-spacing: .04em; }
 .pilgrimage-deliver { padding: 78px 0 104px; background: #f5f1e6; }
 .pilgrimage-section-heading { max-width: 760px; }
 .pilgrimage-section-heading h2 { margin: 18px 0 15px; font-size: clamp(37px, 5.1vw, 62px); }
@@ -334,6 +351,11 @@ textarea:focus-visible, summary:focus-visible {
 .pilgrimage-testimonial p > span { width: 46px; height: 1px; background: #b9a34e; }
 .pilgrimage-testimonial strong { color: #39362d; font-weight: 600; }
 .pilgrimage-testimonial i { font-style: normal; }
+.pilgrimage-planning-note { padding: 85px 0; background: #fbf8ef; }
+.pilgrimage-planning-inner { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(42px, 8vw, 110px); }
+.pilgrimage-planning-inner h2 { max-width: 600px; margin: 15px 0; color: #29251d; font-size: clamp(34px, 4.3vw, 50px); line-height: 1.12; }
+.pilgrimage-planning-inner p { max-width: 620px; margin: 0; color: #67665f; font-size: 14px; line-height: 1.8; }
+.pilgrimage-planning-inner ul { display: grid; gap: 12px; margin: 0; padding: 24px 0 24px 23px; border-left: 1px solid #d9d0bc; color: #526457; font-size: 13px; line-height: 1.6; }
 .pilgrimage-faq-preview { padding: 86px 0 92px; background: #fbf8ef; }
 .pilgrimage-faq-inner { display: grid; grid-template-columns: .82fr 1.18fr; gap: clamp(42px, 8vw, 110px); align-items: start; }
 .pilgrimage-faq-inner .pilgrimage-section-heading { padding-top: 10px; }
@@ -365,6 +387,9 @@ textarea:focus-visible, summary:focus-visible {
   .pilgrimage-overview { padding: 62px 0 70px; }
   .pilgrimage-overview-inner, .pilgrimage-faq-inner { grid-template-columns: 1fr; gap: 34px; }
   .pilgrimage-overview-copy { padding-top: 0; }
+  .pilgrimage-photo-grid { grid-template-columns: repeat(2, 1fr); }
+  .pilgrimage-planning-inner { grid-template-columns: 1fr; gap: 26px; }
+  .pilgrimage-planning-inner ul { border-left: 0; border-top: 1px solid #d9d0bc; padding: 22px 0 0 20px; }
   .pilgrimage-deliver { padding: 64px 0 88px; }
   .pilgrimage-offering-grid { margin-top: 54px; }
   .pilgrimage-steps { grid-template-columns: repeat(2, 1fr); row-gap: 38px; }
@@ -373,10 +398,16 @@ textarea:focus-visible, summary:focus-visible {
   .pilgrimage-process .pilgrimage-section-heading { margin-bottom: 52px; }
   .pilgrimage-faq-preview { padding: 68px 0 75px; }
   .pilgrimage-faq-inner { gap: 45px; }
+  .service-image { min-height: 260px; }
 }
 @media (max-width: 560px) {
   .pilgrimage-overview { padding: 57px 0 45px; }
   .pilgrimage-overview-inner { gap: 65px; }
+  .pilgrimage-photo-strip { padding-bottom: 52px; }
+  .pilgrimage-photo-grid { grid-template-columns: 1fr; }
+  .pilgrimage-photo-grid figure { min-height: 215px; }
+  .pilgrimage-planning-note { padding: 62px 0; }
+  .pilgrimage-planning-inner h2 { font-size: 34px; }
   .pilgrimage-heading h1, .pilgrimage-faq-hero h1 { font-size: 39px; line-height: 1.1; }
   .pilgrimage-overview-copy p { font-size: 16px; line-height: 1.78; }
   .pilgrimage-deliver { padding: 44px 0 84px; }
@@ -470,6 +501,7 @@ textarea:focus-visible, summary:focus-visible {
   .reach-image-label { left: 22px; }
   .reach-copy { padding: 55px 30px 62px; }
   .content-layout { grid-template-columns: 1fr; }
+  .service-image-grid { grid-template-columns: 1fr 1fr; }
   .content-aside { max-width: 520px; }
   .form-layout { grid-template-columns: 1fr; gap: 38px; }
   .form-intro { max-width: 640px; }
@@ -496,7 +528,9 @@ textarea:focus-visible, summary:focus-visible {
   .section-heading { align-items: flex-start; flex-direction: column; gap: 16px; margin-bottom: 27px; }
   .section-heading h2 { margin-top: 9px; font-size: 37px; }
   .service-grid { grid-template-columns: 1fr; gap: 10px; }
-  .service-card, .service-card:nth-child(4), .service-card:last-child { grid-column: auto; min-height: 230px; padding: 22px; }
+  .service-card, .service-card:nth-child(4), .service-card:last-child { grid-column: auto; min-height: 360px; padding: 0; }
+  .service-card-image { height: 175px; }
+  .service-card-body { padding: 18px 20px 21px; }
   .approach-section { padding: 65px 0; }
   .steps-row { grid-template-columns: 1fr; }
   .step, .step + .step { min-height: auto; padding: 21px 0; border-left: 0; border-bottom: 1px solid #d8d0bd; }
@@ -525,6 +559,8 @@ textarea:focus-visible, summary:focus-visible {
   .page-hero h1 { font-size: 44px; }
   .page-intro { font-size: 13px; }
   .page-hero-orbit { top: 125px; right: -160px; width: 220px; height: 220px; }
+  .service-image-grid { grid-template-columns: 1fr; }
+  .service-image { min-height: 220px; }
   .body-section { padding: 52px 0 62px; }
   .content-copy > p { font-size: 14px; line-height: 1.85; }
   .related-section { margin-top: 45px; }

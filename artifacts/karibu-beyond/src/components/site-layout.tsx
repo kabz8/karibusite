@@ -25,7 +25,7 @@ import {
 } from "react-icons/si";
 import { FaLinkedinIn } from "react-icons/fa6";
 
-export const CONTACT_EMAIL = "info@karibuandbeyondltd.com";
+export const CONTACT_EMAIL = "bookings@karibuandbeyond.co.ke";
 export const PHONE_ONE = "+254 729 861 607";
 export const PHONE_TWO = "+1 (732) 874-1372";
 export const PHONE_ONE_TEL = "+254729861607";

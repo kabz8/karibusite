@@ -86,6 +86,16 @@ export const PAGE_META = {
     description:
       "Start a conversation about corporate events, exhibitions, team-building activities, meetings or launches.",
   },
+  "/events/exhibitions": {
+    title: "Exhibition events | Karibu and Beyond Ltd",
+    description:
+      "Discuss exhibition planning, audiences, venue preferences, production and event coordination.",
+  },
+  "/events/team-building": {
+    title: "Team-building events | Karibu and Beyond Ltd",
+    description:
+      "Explore team-building event enquiries shaped around your team, objectives, location and practical needs.",
+  },
   "/events/conferences": {
     title: "Conference enquiries | Karibu and Beyond Ltd",
     description:

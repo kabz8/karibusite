@@ -20,6 +20,7 @@ import {
   PageHero,
   ServiceIcon,
   SiteShell,
+  CONTACT_EMAIL,
 } from "@/components/site-layout";
 import { divisions, faqItems, sitePages, type SitePage } from "@/lib/site-content";
 import { PAGE_META, SITE_ORIGIN } from "@/lib/page-meta.mjs";
@@ -79,7 +80,7 @@ function MetaManager() {
       name: "Karibu and Beyond Ltd",
       url: SITE_ORIGIN,
       logo: `${SITE_ORIGIN}/karibu-logo.png`,
-      email: "info@karibuandbeyondltd.com",
+      email: CONTACT_EMAIL,
       telephone: ["+254 729 861 607", "+1 (732) 874-1372"],
       areaServed: ["East Africa", "India"],
     });
@@ -96,6 +97,32 @@ function ScrollToTop() {
   }, [location]);
 
   return null;
+}
+
+function ServiceCardGrid() {
+  return (
+    <div className="service-grid">
+      {divisions.map((division, index) => (
+        <Link className={`service-card service-card-${index + 1}`} key={division.href} href={division.href}>
+          <img
+            className="service-card-image"
+            src={imagePath(division.image)}
+            alt={division.imageAlt}
+            loading="lazy"
+          />
+          <span className="service-number">0{index + 1}</span>
+          <div className="service-card-body">
+            <span className="service-icon"><ServiceIcon name={division.icon} /></span>
+            <h3 className="serif">{division.title}</h3>
+            <p>{division.description}</p>
+            <span className="card-link">
+              Discover the service <ArrowUpRight size={15} aria-hidden="true" />
+            </span>
+          </div>
+        </Link>
+      ))}
+    </div>
+  );
 }
 
 function HomePage() {
@@ -157,19 +184,7 @@ function HomePage() {
               All services <MoveUpRight size={15} aria-hidden="true" />
             </Link>
           </div>
-          <div className="service-grid">
-            {divisions.map((division, index) => (
-              <Link className={`service-card service-card-${index + 1}`} key={division.href} href={division.href}>
-                <span className="service-number">0{index + 1}</span>
-                <span className="service-icon"><ServiceIcon name={division.icon} /></span>
-                <h3 className="serif">{division.title}</h3>
-                <p>{division.description}</p>
-                <span className="card-link">
-                  Discover the service <ArrowUpRight size={15} aria-hidden="true" />
-                </span>
-              </Link>
-            ))}
-          </div>
+          <ServiceCardGrid />
         </div>
       </section>
 
@@ -273,6 +288,7 @@ function EnquiryPage({
   return (
     <>
       <PageHero eyebrow={page.eyebrow} title={page.title} intro={page.intro} />
+      <ServiceImageGallery page={page} />
       <section className="form-page">
         <div className="container-wide form-layout">
           <div className="form-intro">
@@ -299,6 +315,7 @@ function ContentPage({ page }: { page: SitePage }) {
   return (
     <>
       <PageHero eyebrow={page.eyebrow} title={page.title} intro={page.intro} />
+      <ServiceImageGallery page={page} />
       <section className="body-section">
         <div className="container-wide content-layout">
           <article className="content-copy">
@@ -314,7 +331,7 @@ function ContentPage({ page }: { page: SitePage }) {
             <p className="serif">Premium service, considered for a global world.</p>
             <span className="aside-rule" />
             <span>Embakasi, North Airport Road, Kenya</span>
-            <a href="mailto:info@karibuandbeyondltd.com">info@karibuandbeyondltd.com</a>
+            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
             <Link className="text-link" href="/contact">Contact the team <ArrowUpRight size={15} /></Link>
           </aside>
         </div>
@@ -331,6 +348,13 @@ function ContentPage({ page }: { page: SitePage }) {
           </div>
         )}
       </section>
+      {page === sitePages["/services"] && (
+        <section className="section services-section" aria-label="Service areas">
+          <div className="container-wide">
+            <ServiceCardGrid />
+          </div>
+        </section>
+      )}
       {page.service && (
         <FinalCallout
           title="Tell us what you're planning."
@@ -338,6 +362,27 @@ function ContentPage({ page }: { page: SitePage }) {
         />
       )}
     </>
+  );
+}
+
+function ServiceImageGallery({ page }: { page: SitePage }) {
+  if (!page.images?.length) return null;
+
+  return (
+    <section className="service-image-gallery" aria-label={`${page.eyebrow} imagery`}>
+      <div className="container-wide service-image-grid">
+        {page.images.map((image, index) => (
+          <figure className={`service-image service-image-${index + 1}`} key={image.src}>
+            <img
+              src={imagePath(image.src)}
+              alt={image.alt}
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+            {image.caption && <figcaption>{image.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -388,18 +433,18 @@ const pilgrimageOfferings = [
 ];
 
 const pilgrimageSteps = [
-  ["Listen", "We meet with the host or organiser to understand the spiritual programme and group needs."],
-  ["Design", "A coordinated itinerary aligned to the programme, with options for accommodation and routing."],
-  ["Travel", "End-to-end logistics from departure through every site visit, handled with quiet professionalism."],
-  ["Return", "Coordinated return travel, testimonial of the journey and ongoing relationship for future programmes."],
+  ["Listen", "Share the purpose, destination, timing and group outline for the journey."],
+  ["Outline", "Discuss possible routes, travel days and the practical arrangements to explore."],
+  ["Review", "Check scope, suppliers, availability and costs directly for the brief."],
+  ["Confirm", "Agree the arrangements and next steps before any booking proceeds."],
 ];
 
 const pilgrimageFaqItems = [
-  ["Do you support different faith traditions?", "Yes, we coordinate pilgrimages across all faith based religions."],
-  ["Can you accommodate large faith-based organisations?", "Yes. We regularly coordinate groups of 30 to 200 pilgrims, with logistical staffing scaled to group size and chaperoning needs."],
-  ["How do you handle pastoral programme integration?", "We work in service of the faith-led programme. Service schedules, devotionals and reflection times are scheduled first; logistics are designed around them."],
-  ["Do you support pilgrims with mobility needs?", "Yes. We plan for mobility, dietary and medical needs at intake and adapt accommodation, transport and pace accordingly."],
-  ["What documentation support do you provide?", "We support visa applications, group documentation, travel insurance coordination and detailed pre-departure packs for every pilgrim."],
+  ["Can different faith communities enquire?", "Yes. Share the purpose, destination and programme outline. Any arrangements are reviewed and confirmed for the particular group."],
+  ["Can we enquire for a group?", "Yes. Include an estimated group size, proposed dates and departure point. Capacity and practical arrangements are confirmed directly."],
+  ["Can the itinerary follow our faith programme?", "Share the programme priorities and important timing. Possible routes and schedules can then be discussed around those needs."],
+  ["What if travellers have accessibility needs?", "Mention practical accessibility requirements early. Suitable transport, accommodation and support must be checked and confirmed before travel."],
+  ["Can you advise on visas or travel documents?", "Entry requirements vary by destination and traveller. Check current guidance with the relevant authorities; any practical coordination is discussed separately."],
 ];
 
 function PilgrimageLanding() {
@@ -409,13 +454,30 @@ function PilgrimageLanding() {
         <div className="container-wide pilgrimage-overview-inner">
           <div className="pilgrimage-heading">
             <span className="eyebrow">Overview</span>
-            <h1 className="serif">An end-to-end practice, delivered with global standards.</h1>
+            <h1 className="serif">Travel for meaning, planned with care.</h1>
             <span className="pilgrimage-rule" aria-hidden="true" />
           </div>
           <div className="pilgrimage-overview-copy">
-            <p>A pilgrimage is unlike any other journey. Our practice exists to honour that — coordinating travel with quiet professionalism so pilgrims can focus on what matters: faith, reflection and shared experience.</p>
-            <p>We design and operate tours, faith-based travel programmes, group pilgrimages and spiritual retreats. Every itinerary is built around the spiritual programme of the host, with logistics handled discreetly in the background.</p>
+            <p>A pilgrimage is unlike any other journey. Begin with the purpose of the trip, the places you hope to visit and the people travelling. We can discuss a personal, family, faith-community or organisational enquiry with respect for the programme and practical needs involved.</p>
+            <p>Planning may include timing, group size, departure point, route ideas, accommodation enquiries, transport and accessibility considerations. Each scope, supplier, availability and cost is reviewed for the brief and confirmed directly before anything is booked.</p>
           </div>
+        </div>
+      </section>
+
+      <section className="pilgrimage-photo-strip" aria-label="Pilgrimage travel imagery">
+        <div className="container-wide pilgrimage-photo-grid">
+          <figure>
+            <img src={imagePath("service-pilgrimage-interior.jpg")} alt="Historic sacred-site interior illuminated by warm light" loading="lazy" />
+            <figcaption>Historic sites</figcaption>
+          </figure>
+          <figure>
+            <img src={imagePath("service-pilgrimage-group.jpg")} alt="Small faith group walking together at a historic site" loading="lazy" />
+            <figcaption>Group journeys</figcaption>
+          </figure>
+          <figure>
+            <img src={imagePath("karibu-pilgrimage-interior.jpg")} alt="Ornate basilica interior with architectural detail" loading="lazy" />
+            <figcaption>Meaningful destinations</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -424,7 +486,7 @@ function PilgrimageLanding() {
           <div className="pilgrimage-section-heading">
             <span className="eyebrow">What we deliver</span>
             <h2 className="serif">A complete portfolio,<br className="desktop-break" /> organised for clarity and outcomes.</h2>
-            <p>Each engagement is scoped, staffed and reviewed against measurable service standards.</p>
+            <p>The scope is shaped around your group, the programme and practical arrangements that can be confirmed for the brief.</p>
             <span className="pilgrimage-rule" aria-hidden="true" />
           </div>
           <div className="pilgrimage-offering-grid">
@@ -446,7 +508,7 @@ function PilgrimageLanding() {
         <div className="container-wide">
           <div className="pilgrimage-section-heading">
             <span className="eyebrow eyebrow-gold">Engagement process</span>
-            <h2 className="serif">A measured, transparent path from brief to delivery.</h2>
+            <h2 className="serif">A measured path from first enquiry to confirmed arrangements.</h2>
             <span className="pilgrimage-rule" aria-hidden="true" />
           </div>
           <div className="pilgrimage-steps">
@@ -461,11 +523,19 @@ function PilgrimageLanding() {
         </div>
       </section>
 
-      <section className="pilgrimage-testimonial">
-        <div className="container-narrow">
-          <span className="pilgrimage-quote-mark" aria-hidden="true">“</span>
-          <blockquote className="serif">They organised our pilgrimage with such care and reverence. The logistics disappeared into the background, and our community could simply pray.</blockquote>
-          <p><span aria-hidden="true" /> <strong>Fr. D. Kamau</strong><i aria-hidden="true">·</i> Faith leader</p>
+      <section className="pilgrimage-planning-note">
+        <div className="container-wide pilgrimage-planning-inner">
+          <div>
+            <span className="eyebrow">A useful first brief</span>
+            <h2 className="serif">Start with the details that shape the journey.</h2>
+            <p>These practical notes help the team understand what you are considering. Share only information needed for planning; do not send passport numbers or sensitive personal details through this website.</p>
+          </div>
+          <ul>
+            <li>Purpose, destination and proposed dates</li>
+            <li>Approximate group size and departure point</li>
+            <li>Programme priorities and travel pace</li>
+            <li>Accessibility or other practical needs</li>
+          </ul>
         </div>
       </section>
 
@@ -474,7 +544,7 @@ function PilgrimageLanding() {
           <div className="pilgrimage-section-heading">
             <span className="eyebrow">FAQ</span>
             <h2 className="serif">Common questions, answered.</h2>
-            <p>For specific scenarios or commercial terms, our team is available for direct consultation.</p>
+            <p>Dates, routes, capacity, supplier arrangements and costs are checked and confirmed for each enquiry.</p>
             <span className="pilgrimage-rule" aria-hidden="true" />
           </div>
           <div className="pilgrimage-faq-list">
@@ -493,10 +563,10 @@ function PilgrimageLanding() {
         <div className="container-wide pilgrimage-closing-inner">
           <span className="eyebrow eyebrow-gold">Begin a conversation</span>
           <h2 className="serif">Tell us what you're planning. We'll architect a thoughtful response.</h2>
-          <p>Every enquiry is reviewed by a senior consultant. You'll receive a confidential, considered proposal as soon as possible — at the earliest opportunity, never a templated pitch.</p>
+          <p>Share the purpose, destination, timing and group outline. The team can discuss possible next steps; an enquiry is not a booking or a guarantee of a proposal or availability.</p>
           <div className="pilgrimage-closing-actions">
             <Link className="button button-gold" href="/pilgrimage/request-itinerary">Request an itinerary <ArrowRight size={16} aria-hidden="true" /></Link>
-            <a className="button pilgrimage-email-button" href="mailto:info@karibuandbeyondltd.com">Email our team</a>
+            <a className="button pilgrimage-email-button" href={`mailto:${CONTACT_EMAIL}`}>Email our team</a>
           </div>
         </div>
       </section>
@@ -511,8 +581,24 @@ function PilgrimageFaq() {
         <div className="container-wide">
           <span className="eyebrow">FAQ</span>
           <h1 className="serif">Common questions,<br /> answered.</h1>
-          <p>For specific scenarios or commercial terms, our team is available for direct consultation.</p>
+            <p>Dates, routes, capacity, supplier arrangements and costs are checked and confirmed for each enquiry.</p>
           <span className="pilgrimage-rule" aria-hidden="true" />
+        </div>
+      </section>
+      <section className="pilgrimage-photo-strip" aria-label="Pilgrimage destination imagery">
+        <div className="container-wide pilgrimage-photo-grid">
+          <figure>
+            <img src={imagePath("service-pilgrimage-interior.jpg")} alt="Historic sacred-site interior illuminated by warm light" loading="lazy" />
+            <figcaption>Historic sites</figcaption>
+          </figure>
+          <figure>
+            <img src={imagePath("service-pilgrimage-group.jpg")} alt="Small faith group walking together at a historic site" loading="lazy" />
+            <figcaption>Group journeys</figcaption>
+          </figure>
+          <figure>
+            <img src={imagePath("karibu-pilgrimage-interior.jpg")} alt="Ornate basilica interior with architectural detail" loading="lazy" />
+            <figcaption>Meaningful destinations</figcaption>
+          </figure>
         </div>
       </section>
       <section className="pilgrimage-faq-page-list">
@@ -529,10 +615,10 @@ function PilgrimageFaq() {
         <div className="container-wide pilgrimage-closing-inner">
           <span className="eyebrow eyebrow-gold">Begin a conversation</span>
           <h2 className="serif">Tell us what you're planning. We'll architect a thoughtful response.</h2>
-          <p>Every enquiry is reviewed by a senior consultant. You'll receive a confidential, considered proposal as soon as possible — at the earliest opportunity, never a templated pitch.</p>
+          <p>Share the purpose, destination, timing and group outline. The team can discuss possible next steps; an enquiry is not a booking or a guarantee of a proposal or availability.</p>
           <div className="pilgrimage-closing-actions">
             <Link className="button button-gold" href="/pilgrimage/request-itinerary">Request an itinerary <ArrowRight size={16} aria-hidden="true" /></Link>
-            <a className="button pilgrimage-email-button" href="mailto:info@karibuandbeyondltd.com">Email our team</a>
+            <a className="button pilgrimage-email-button" href={`mailto:${CONTACT_EMAIL}`}>Email our team</a>
           </div>
         </div>
       </section>
