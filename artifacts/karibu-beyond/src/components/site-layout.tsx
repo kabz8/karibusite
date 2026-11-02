@@ -31,6 +31,7 @@ export const PHONE_TWO = "+1 (732) 874-1372";
 export const PHONE_ONE_TEL = "+254729861607";
 export const PHONE_TWO_TEL = "+17328741372";
 export const WHATSAPP_NUMBER = "254729861607";
+export const WHATSAPP_NUMBER_TWO = "17328741372";
 const LOGO = `${import.meta.env.BASE_URL}karibu-logo.png`;
 
 const serviceLinks = [
@@ -456,7 +457,10 @@ function WhatsAppContact() {
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, [open]);
 
-  const contacts = [{ number: WHATSAPP_NUMBER, display: PHONE_ONE, primary: true }];
+  const contacts = [
+    { number: WHATSAPP_NUMBER, display: PHONE_ONE, label: "Kenya line", primary: true },
+    { number: WHATSAPP_NUMBER_TWO, display: PHONE_TWO, label: "United States", primary: false },
+  ];
 
   return (
     <>
@@ -480,7 +484,7 @@ function WhatsAppContact() {
           </div>
           <p>Choose a number to start a conversation on WhatsApp.</p>
           <div className="whatsapp-number-list">
-            {contacts.map(({ number, display, primary }) => (
+            {contacts.map(({ number, display, label, primary }) => (
               <a
                 className="whatsapp-number"
                 href={`https://wa.me/${number}?text=${encodeURIComponent("Hello Karibu and Beyond, I would like to make an enquiry.")}`}
@@ -493,7 +497,7 @@ function WhatsAppContact() {
                 </span>
                 <span className="whatsapp-number-copy">
                   <strong>{display}</strong>
-                  {primary && <small>Primary line</small>}
+                  <small>{label}</small>
                 </span>
                 <ArrowRight size={16} aria-hidden="true" />
               </a>

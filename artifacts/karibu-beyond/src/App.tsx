@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Link, Route, Router, Switch, useLocation, useParams } from "wouter";
 import {
   ArrowRight,
@@ -28,6 +28,64 @@ import "./website.css";
 
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 const imagePath = (file: string) => `${import.meta.env.BASE_URL}${file}`;
+
+const heroSlides = [
+  {
+    label: "Pilgrimage tourism",
+    titleStart: "Pilgrimage",
+    titleAccent: "Tourism",
+    description:
+      "Considered, respectful and professionally organised faith-based travel — supporting individuals and faith-based organisations on journeys of spiritual significance.",
+    image: "karibu-pilgrimage-interior.jpg",
+    imageAlt: "Ornate interior of a historic basilica",
+    href: "/pilgrimage/request-itinerary",
+    action: "Request a Proposal",
+  },
+  {
+    label: "Tours, travel and transfers",
+    titleStart: "Tours, travel",
+    titleAccent: "& transfers",
+    description:
+      "Thoughtful planning for journeys, from tailored itineraries and flight enquiries to accommodation and executive transfers.",
+    image: "service-tours-safari.jpg",
+    imageAlt: "East African safari landscape at sunset",
+    href: "/services/tours-travel-transfers",
+    action: "Explore Travel",
+  },
+  {
+    label: "Events management",
+    titleStart: "Events",
+    titleAccent: "Management",
+    description:
+      "Enquiries for exhibitions, team-building activities, corporate events, conferences and celebrations.",
+    image: "service-events-gathering.jpg",
+    imageAlt: "Elegant event hall set for a corporate gathering",
+    href: "/services/events-management",
+    action: "Explore Events",
+  },
+  {
+    label: "Medical tourism",
+    titleStart: "Medical",
+    titleAccent: "Tourism",
+    description:
+      "Non-clinical travel and patient support coordination for people exploring care abroad.",
+    image: "service-medical-care.jpg",
+    imageAlt: "Bright, modern clinical treatment room",
+    href: "/services/medical-tourism",
+    action: "Explore Medical Tourism",
+  },
+  {
+    label: "Consultancy",
+    titleStart: "Consultancy",
+    titleAccent: "",
+    description:
+      "A considered first conversation for individual, corporate and institutional requirements.",
+    image: "service-consultancy-meeting.jpg",
+    imageAlt: "Professionals in a thoughtful business discussion",
+    href: "/services/consultancy",
+    action: "Explore Consultancy",
+  },
+];
 
 function MetaManager() {
   const [location] = useLocation();
@@ -126,34 +184,78 @@ function ServiceCardGrid() {
 }
 
 function HomePage() {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const slide = heroSlides[activeSlide];
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches);
+    updatePreference();
+    mediaQuery.addEventListener("change", updatePreference);
+    return () => mediaQuery.removeEventListener("change", updatePreference);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused || prefersReducedMotion) return;
+    const timer = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % heroSlides.length);
+    }, 6500);
+    return () => window.clearInterval(timer);
+  }, [activeSlide, isPaused, prefersReducedMotion]);
+
   return (
     <>
-      <section className="hero">
+      <section
+        className="hero"
+        aria-label="Our services"
+        aria-roledescription="carousel"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onFocus={() => setIsPaused(true)}
+        onBlur={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+            setIsPaused(false);
+          }
+        }}
+      >
         <img
+          key={slide.image}
           className="hero-image"
-          src={imagePath("karibu-pilgrimage-interior.jpg")}
-          alt="Ornate interior of a historic basilica"
+          src={imagePath(slide.image)}
+          alt={slide.imageAlt}
           fetchPriority="high"
         />
         <div className="hero-shade" />
         <div className="container-wide hero-content">
           <div className="hero-copy">
-            <span className="hero-kicker">Pilgrimage</span>
-            <h1 className="serif">Pilgrimage <em>Tourism</em></h1>
-            <p>
-              Considered, respectful and professionally organised faith-based
-              travel — supporting individuals and faith-based organisations on
-              journeys of spiritual significance.
-            </p>
+            <span className="hero-kicker">{slide.label}</span>
+            <h1 className="serif">
+              {slide.titleStart} {slide.titleAccent && <em>{slide.titleAccent}</em>}
+            </h1>
+            <p>{slide.description}</p>
             <div className="hero-actions">
-              <Link className="button button-gold" href="/pilgrimage/request-itinerary">
-                Request a Proposal <ArrowRight size={16} aria-hidden="true" />
+              <Link className="button button-gold" href={slide.href}>
+                {slide.action} <ArrowRight size={16} aria-hidden="true" />
               </Link>
               <Link className="hero-secondary" href="/services">
                 Explore Services
               </Link>
             </div>
           </div>
+        </div>
+        <div className="hero-pagination" aria-label="Choose a service slide">
+          {heroSlides.map((item, index) => (
+            <button
+              key={item.label}
+              type="button"
+              className={`hero-dot${index === activeSlide ? " is-active" : ""}`}
+              aria-label={`Show ${item.label}`}
+              aria-current={index === activeSlide ? "true" : undefined}
+              onClick={() => setActiveSlide(index)}
+            />
+          ))}
         </div>
       </section>
 
